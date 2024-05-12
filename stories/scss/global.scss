@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+	font: {
+		family: "Lato", sans-serif;
+	}
+}
+
+// Layout
+.show-layout-border {
+	padding: 20px;
+	background: {
+		color: lightpink;
+	}
+}
+
+.use-section-layout {
+	background: {
+		color: lightpink;
+	}
+	.td-section-layout {
+		background: {
+			color: rgba(lightblue, 0.5);
+		}
+	}
+	.content-wrapper {
+		border: 1px solid #333;
+	}
+}
+// End Layout
