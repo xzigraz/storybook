@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MainLayout } from '@/ui-component/Layout/mainLayout';
 import { SectionLayout } from '@/ui-component/Layout/sectionLayout';
+import { Button } from "@/ui-component/Button/Button";
 import StarNight from "@/stories/assets/benjamin-voros-phIFdC6lA4E-unsplash.webp";
 
 const meta = {
@@ -63,6 +64,19 @@ export const LayoutForSection: Story = {
 			<SectionLayout bgImg={StarNight.src} isBgFullWidth={false}>
 				<>
 					<h2>This is a section with background image limited in the content area.</h2>
+				</>
+			</SectionLayout>
+		</>
+	}
+}
+
+export const LayoutForHeroBanner: Story = {
+	args: {
+		children: <>
+			<SectionLayout bgImg={StarNight.src} isDarkBG height='300px'>
+				<>
+					<h1>Best Component In the World!</h1>
+					<Button label="Get Me" size="medium" backgroundColor='#d600ff'/>
 				</>
 			</SectionLayout>
 		</>
