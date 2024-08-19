@@ -1,0 +1,10 @@
+.loading-page {
+	width: 100%;
+	height: 500px;
+	.td-loading {
+		+ .td-loading-mask {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
