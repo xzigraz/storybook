@@ -1,30 +1,26 @@
+import "./_homepage.page.scss";
+import Daniel from "@/assets/images/daniel.webp";
 import { MainLayout } from "@/ui-component/Layout/mainLayout";
-import Link from "next/link";
-import Logo from "@/app/assets/images/icon.png";
 import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
+import Nav from "@/components/nav";
 
 export default function Home() {
-	return <MainLayout>
+	return <MainLayout className="homepage">
 		<>
-			<nav>
-				<Link href="/"><img src={Logo.src} /></Link>
-				<ul>
-					<li>
-						<Link href="#">About</Link>
-					</li>
-					<li>
-						<Link href="#">Projects</Link>
-					</li>
-					<li>
-						<Link href="#">Contact</Link>
-					</li>
-				</ul>
-			</nav>
-			<SectionLayout>
+			<Nav/>
+			<SectionLayout className="hero-panel" height="100vh">
 				<>
-					<h1>Daniel</h1>
+					<div className="portrait-container">
+						<img src={Daniel.src} alt="Daniel Zhu" title="Person who owns this website." />
+						<h1>Who is Daniel?</h1>
+					</div>
 				</>
 			</SectionLayout>
+			{/* <SectionLayout className="about me">
+				<>
+					<h2>Resume</h2>
+				</>
+			</SectionLayout> */}
 		</>
 	</MainLayout>;
 }

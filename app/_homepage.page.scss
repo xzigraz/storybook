@@ -1,0 +1,50 @@
+@import "../ui-component/scss/utility.imports";
+
+.homepage {
+	.hero-panel {
+		width: 100%;
+		height: 100vh;
+		background: {
+			color: $quinaryColor;
+		}
+		margin: {
+			bottom: unset;
+		}
+		.content-wrapper {
+			display: flex;
+			height: 100%;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	.portrait-container {
+		position: relative;
+		filter: drop-shadow(0 0 #{rem(128)} $quaternaryColor);
+		h1 {
+			position: absolute;
+			bottom: rem(-7px);
+			margin: 0;
+			font: {
+				size: rem(39px);
+				weight: 900;
+			}
+			text-transform: uppercase;
+			color: $quaternaryColor;
+			text-shadow: rem(2) 0 0 $quinaryColor;
+			&:after {
+				content: "Who is Daniel?";
+				position: absolute;
+				left: 0;
+				font: {
+					size: rem(39px);
+					weight: 900;
+				}
+				text-transform: uppercase;
+				transform: rotate3d(1, 0, 0, 220deg);
+				bottom: rem(-21);
+				opacity: 0.5;
+			}
+		}
+	}
+}
