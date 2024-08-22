@@ -1,5 +1,21 @@
 
 @import "./ui-component/scss/utility.imports";
+:root {
+	--MIFill: 0;
+	--MIWeight: 400;
+	--MIGrad: 0;
+	--MIOPSZ: 24;
+}
+
+.material-symbols-outlined {
+	position: relative;
+	top: rem(-2);
+	font-variation-settings:
+		'FILL' var(--MIFill),
+		'wght' var(--MIWeight),
+		'GRAD' var(--MIGrad),
+		'opsz' var(--MIOPSZ)
+}
 
 nav {
 	position: fixed;

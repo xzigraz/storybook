@@ -16,11 +16,37 @@ export default function Home() {
 					</div>
 				</>
 			</SectionLayout>
-			{/* <SectionLayout className="about me">
+			<SectionLayout className="about-me husband">
 				<>
-					<h2>Resume</h2>
+					<h2><span className="material-symbols-outlined">join</span>Husband</h2>
+					<p></p>
 				</>
-			</SectionLayout> */}
+			</SectionLayout>
+			<SectionLayout className="about-me father">
+				<>
+					<h2><span className="material-symbols-outlined">baby_changing_station</span>Father</h2>
+				</>
+			</SectionLayout>
+			<SectionLayout className="about-me engineer">
+				<>
+					<h2><span className="material-symbols-outlined">code</span>Front-End Engineer</h2>
+				</>
+			</SectionLayout>
+			<SectionLayout className="about-me fishkeeper">
+				<>
+					<h2><span className="material-symbols-outlined">pets</span>Fish Keeper</h2>
+				</>
+			</SectionLayout>
+			<SectionLayout className="about-me gamer">
+				<>
+					<h2><span className="material-symbols-outlined">videogame_asset</span>Gamer</h2>
+				</>
+			</SectionLayout>
+			<SectionLayout className="about-me knowledge">
+				<>
+					<h2><span className="material-symbols-outlined">explore</span>Explorer</h2>
+				</>
+			</SectionLayout>
 		</>
 	</MainLayout>;
 }
