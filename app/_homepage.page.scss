@@ -1,6 +1,7 @@
 @import "../ui-component/scss/utility.imports";
 
 .homepage {
+	overflow-x: hidden;
 	.hero-panel {
 		width: 100%;
 		height: 100vh;
@@ -51,19 +52,18 @@
 		margin: {
 			bottom: 0;
 		}
+		min-height: rem(300);
 		&.husband {
 			background: {
 				color: rgba($primaryColor, 0.1);
+			}
+			img {
+				top: rem(20);
 			}
 		}
 		&.father {
 			background: {
 				color: rgba($secondaryColor, 0.1);
-			}
-			h2 {
-				margin: {
-					left: auto;
-				}
 			}
 		}
 		&.engineer {
@@ -75,36 +75,98 @@
 			background: {
 				color: rgba($quaternaryColor, 0.1);
 			}
-			h2 {
-				margin: {
-					left: auto;
-				}
-			}
 		}
 		&.gamer {
 			background: {
 				color: rgba($quinaryColor, 0.1);
 			}
 		}
-		&.knowledge {
+		&.explorer {
 			background: {
 				image: linear-gradient(124deg, rgba($primaryColor, 0.2), rgba($secondaryColor, 0.2), rgba($tertiaryColor, 0.2), rgba($quaternaryColor, 0.2), rgba($quinaryColor, 0.2)) !important;
 				size: 1800% 1800%;
 			}
 			animation: rainbow 18s ease infinite;
+		}
+		// commented out code is to experiment with transition from display none using allow-discrete and then use the @starting-style rule.
+		&.align-left {
+			&.section-in-view {
+				h2 {
+					transform: translateX(0);
+				}
+				img {
+					// display: block;
+					right: rem(30);
+					transform: translateX(0) rotate(10deg);
+					// @starting-style {
+					// 	transform: translateX(calc(-100vw - 30px));
+					// }
+				}
+			}
 			h2 {
+				transform: translateX(-500px);
+				transition: transform ease 0.4s;
+			}
+			img {
+				// display: none;
+				transform: translateX(calc(-100vw - 30px)) rotate(-35deg);
+				transition: transform ease 0.3s;
+				// transition-behavior: allow-discrete;
+			}
+		}
+		&.align-right {
+			&.section-in-view {
+				h2 {
+					transform: translateX(0);
+				}
+				img {
+					left: rem(30);
+					transform: translateX(0) rotate(-15deg);
+				}
+			}
+			h2, p {
 				margin: {
 					left: auto;
 				}
+				text-align: right;
+			}
+			h2 {
+				transform: translateX(calc(100vw + 300px));
+				transition: transform ease 0.4s;
+			}
+			img {
+				transform: translateX(calc(100vw + 30px)) rotate(30deg);
+				transition: transform ease 0.3s;
 			}
 		}
 		.content-wrapper {
+			position: relative;
 			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			p {
+				max-width: 70vw;
+				font: {
+					size: rem(18);
+				}
+				color: $secondaryColor;
+			}
+			img {
+				width: rem(200);
+				position: absolute;
+				border: rem(10) solid $quinaryColor;
+				box-shadow: 0 0 0 rem(2) $secondaryColor;
+				border-radius: rem(15);
+				object-fit: cover;
+			}
 		}
 		h2 {
 			display: flex;
 			align-items: center;
 			gap: rem(5);
+			font: {
+				size: rem(30);
+			}
 			color: $secondaryColor;
 			span {
 				color: rgba($primaryColor, 0.7);

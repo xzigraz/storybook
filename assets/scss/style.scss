@@ -26,6 +26,7 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	padding: rem(20) rem(30);
+	z-index: 1;
 	ul {
 		display: flex;
 		align-items: center;
@@ -41,6 +42,7 @@ nav {
 				}
 				text-decoration: none;
 				color: $secondaryColor;
+				filter: drop-shadow(0 0 #{rem(2)} $quinaryColor);
 			}
 		}
 	}
