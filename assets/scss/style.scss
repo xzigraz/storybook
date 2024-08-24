@@ -17,6 +17,10 @@
 		'opsz' var(--MIOPSZ)
 }
 
+a {
+	color: $quaternaryColor;
+}
+
 nav {
 	position: fixed;
 	top: 0;
@@ -44,6 +48,43 @@ nav {
 				color: $secondaryColor;
 				filter: drop-shadow(0 0 #{rem(2)} $quinaryColor);
 			}
+		}
+	}
+}
+
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: {
+		color: $secondaryColor;
+	}
+	padding: {
+		left: rem(30);
+		right: rem(30);
+	}
+	.copy-right {
+		display: flex;
+		align-items: center;
+		color: $quinaryColor;
+		span {
+			right: rem(5px);
+		}
+	}
+	ul {
+		display: flex;
+		align-items: center;
+		list-style: none;
+		gap: rem(15);
+		a {
+			display: block;
+		}
+		svg {
+			width: rem(40);
+			height: rem(40);
+		}
+		img {
+			width: rem(40);
 		}
 	}
 }

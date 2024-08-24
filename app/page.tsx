@@ -8,8 +8,11 @@ import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
 import Nav from "@/components/nav";
 import Wife from "@/assets/images/wife.webp";
 import Kids from "@/assets/images/kids.webp";
+import Classroom from "@/assets/images/dma-classroom.webp";
+import FishTank from "@/assets/images/fish-tank.webp";
 import clsx from "clsx";
 import isRefInView from "@/ui-component/CheckInview/checkIsInview";
+import Footer from "@/components/footer";
 
 export default function Home() {
 	const husbandRef = useRef(null);
@@ -33,14 +36,14 @@ export default function Home() {
 			<SectionLayout className={clsx("about-me husband align-left", isRefInView(husbandRef) && "section-in-view")} ref={husbandRef}>
 				<>
 					<h2><span className="material-symbols-outlined">join</span>Husband</h2>
-					<p>My wife and I have been together for 21 years and I am looking forward to waking up next to her each day.</p>
+					<p>This is my wife. We have been together for 21 years and I am looking forward to waking up next to her each day.</p>
 					<img src={Wife.src} alt="Wife" title="A stunning woman." />
 				</>
 			</SectionLayout>
 			<SectionLayout className={clsx("about-me father align-right", isRefInView(fatherRef) && "section-in-view")} ref={fatherRef} height="400px">
 				<>
 					<h2><span className="material-symbols-outlined">baby_changing_station</span>Father</h2>
-					<p>My kids are my proudest achievements. There are so many horrored stories on the internet about parenthood, 
+					<p>These are my kids, and they are my proudest achievements. There are so many horrored stories on the internet about parenthood, 
 						but I feel like it is a personal thing. Yes, it is not for the faint of heart, but one's heart is filled 
 						a bit more each day.</p>
 					<p>People tell me I am ready when I ask myself, "What if I mess up?" It was 9 years ago, I feel pretty good so far.</p>
@@ -50,16 +53,35 @@ export default function Home() {
 			<SectionLayout className={clsx("about-me engineer align-left", isRefInView(engineerRef) && "section-in-view")} ref={engineerRef}>
 				<>
 					<h2><span className="material-symbols-outlined">code</span>Front-End Engineer</h2>
+					<p>That is my classroom; it hasn't changed much. My field of study was Digital Media Art, and our course required us to 
+						present our projects on a page hosted by the school. In the early 2000s, information as art is the thing, and we created 
+						art used mediums like Arduino boards, breadboards, sensors, HTML, CSS, and ActionScript. That's how everything started for me.</p>
+					<p>For the past 17 years, equipped with the most valuable lesson I learned from my program—critical thinking—I have been honing 
+						my skills and learning from peers and mentors across various companies. Finally, over the last three years, I have had the 
+						opportunity to mentor others and give back.</p>
+					<img src={Classroom.src} alt="Digital Media Art Classroom" title="The classroom look the same after I graduated for 17 years." />
 				</>
 			</SectionLayout>
 			<SectionLayout className={clsx("about-me fishkeeper align-right", isRefInView(fishkeeperRef) && "section-in-view")} ref={fishkeeperRef}>
 				<>
 					<h2><span className="material-symbols-outlined">pets</span>Fish Keeper</h2>
+					<p>This is my older kid's aquarium, I have been keeping it since the start of the COVID-19 pandemic. With the help from Youtube 
+						channels like <a href="https://www.youtube.com/@FootheFlowerhorn" target="_blank">Foo the Flowerhorn</a>, <a href="https://www.youtube.com/@MDFishTanks" target="_blank">
+						MD Fish Tanks</a>, <a href="https://www.youtube.com/@SerpaDesign" target="_blank">SerpaDesign</a>, <a href="https://www.youtube.com/@AquariumCoop" target="_blank">
+						Aquarium Co-op</a>, <a href="https://www.youtube.com/@PrimeTimeAquatics" target="_blank">Prime Time Aquatics</a>, as well as <a href="https://aquariumplantlab.com/" target="_blank">
+						Auqarium Plant Lab</a>, and the <a href="https://www.youtube.com/@FootheFlowerhorn" target="_blank">r/Aquariums</a>, I was 
+						able to create a little ecosystem here and Snails are the most thriving!</p>
+					<img src={FishTank.src} alt="Planted Freshwater Aquarium" title="A 20 gallon planted freshwater aquarium with a sustainable ecosystem." />
 				</>
 			</SectionLayout>
 			<SectionLayout className={clsx("about-me gamer align-left", isRefInView(gamerRef) && "section-in-view")} ref={gamerRef}>
 				<>
 					<h2><span className="material-symbols-outlined">videogame_asset</span>Gamer</h2>
+					<p>I enjoy playing video games, but I only play when I have a lot of free time. That's why I played World of 
+						Warcraft for over 14 years since its release then stopped. I just don't have the time anymore. I am also 
+						playing Eve Online, mostly just training skills because I can set it and forget it, It'll continue when I 
+						am not online.</p>
+					<p>These days, time is a valuable commodity, so no games, but I do miss it.</p>
 				</>
 			</SectionLayout>
 			<SectionLayout className={clsx("about-me explorer align-right", isRefInView(explorerRef) && "section-in-view")} ref={explorerRef}>
@@ -67,6 +89,7 @@ export default function Home() {
 					<h2><span className="material-symbols-outlined">explore</span>Explorer</h2>
 				</>
 			</SectionLayout>
+			<Footer/>
 		</>
 	</MainLayout>;
 }

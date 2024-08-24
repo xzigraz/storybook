@@ -70,10 +70,33 @@
 			background: {
 				color: rgba($tertiaryColor, 0.1);
 			}
+			.content-wrapper {
+				p {
+					max-width: calc(70vw - #{rem(200)});
+				}
+				img {
+					width: rem(400);
+				}
+			}
 		}
 		&.fishkeeper {
 			background: {
 				color: rgba($quaternaryColor, 0.1);
+			}
+			&.align-right {
+				&.section-in-view {
+					img {
+						transform: rotate(-3deg);
+					}
+				}
+			}
+			.content-wrapper {
+				p {
+					max-width: calc(70vw - #{rem(200)});
+				}
+				img {
+					width: rem(350);
+				}
 			}
 		}
 		&.gamer {
@@ -150,6 +173,7 @@
 					size: rem(18);
 				}
 				color: $secondaryColor;
+				line-height: rem(24);
 			}
 			img {
 				width: rem(200);
