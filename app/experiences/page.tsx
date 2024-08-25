@@ -11,8 +11,8 @@ export default function Experiences() {
 			<>
 				<SectionLayout>
 					<>
-						<h1>Experiences</h1>
-						<a href={PATH_STORYBOOK} target="_blank">UI Component Storybook</a>
+						<h1 style={{marginTop: "100px"}}>Experiences</h1>
+						<p>Under construction, meanwhile, checkout my <a href={PATH_STORYBOOK} target="_blank">component library</a> in progress.</p>
 					</>
 				</SectionLayout>
 			</>

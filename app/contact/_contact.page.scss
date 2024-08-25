@@ -1,0 +1,52 @@
+@import "../../ui-component/scss/utility.imports";
+
+.contact {
+	background: {
+		color: $quinaryColor;
+	}
+	h1 {
+		color: $secondaryColor;
+		margin: {
+			top: rem(100);
+		}
+		+ p {
+			color: $secondaryColor;
+			margin: {
+				bottom: rem(48px);
+			}
+		}
+	}
+	.contact-form {
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: rem(24);
+			max-width: 50vw;
+			label {
+				color: $secondaryColor;
+				font: {
+					family: inherit;
+				}
+			}
+		}
+		button {
+			width: max-content;
+			margin: {
+				left: auto;
+			}
+			background: {
+				color: $quaternaryColor;
+			}
+			border: 0;
+			color: $quinaryColor;
+			font: {
+				size: rem(24);
+				weight: 700;
+			}
+			text-transform: uppercase;
+			box-shadow: rem(2) rem(2) rem(4) rgba($secondaryColor, 0.9);
+			padding: rem(5) rem(30) rem(3);
+			cursor: pointer;
+		}
+	}
+}
