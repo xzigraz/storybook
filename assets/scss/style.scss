@@ -31,6 +31,9 @@ nav {
 	align-items: center;
 	padding: rem(20) rem(30);
 	z-index: 1;
+	// background: {
+	// 	color: rgba($quinaryColor, 0.8);
+	// }
 	ul {
 		display: flex;
 		align-items: center;
@@ -52,6 +55,10 @@ nav {
 	}
 }
 
+.td-main-layout {
+	min-height: calc(100vh - #{rem(84)});
+}
+
 footer {
 	display: flex;
 	justify-content: space-between;
@@ -59,14 +66,15 @@ footer {
 	background: {
 		color: $secondaryColor;
 	}
-	padding: {
-		left: rem(30);
-		right: rem(30);
-	}
+	padding: rem(10) rem(30);
 	.copy-right {
 		display: flex;
 		align-items: center;
 		color: $quinaryColor;
+		font: {
+			size: rem(20);
+			weight: 700;
+		}
 		span {
 			right: rem(5px);
 		}
@@ -76,15 +84,22 @@ footer {
 		align-items: center;
 		list-style: none;
 		gap: rem(15);
+		margin: 0;
 		a {
 			display: block;
+			text-decoration: none;
+			font: {
+				size: rem(20);
+				weight: 700;
+			}
+			color: $quinaryColor;
 		}
 		svg {
-			width: rem(40);
-			height: rem(40);
-		}
-		img {
-			width: rem(40);
+			width: rem(30);
+			height: rem(30);
+			path {
+				fill: $quinaryColor;
+			}
 		}
 	}
 }

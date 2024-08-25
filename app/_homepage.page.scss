@@ -24,10 +24,10 @@
 		filter: drop-shadow(0 0 #{rem(128)} $quaternaryColor);
 		h1 {
 			position: absolute;
-			bottom: rem(-7px);
+			bottom: rem(-7);
 			margin: 0;
 			font: {
-				size: rem(39px);
+				size: rem(39);
 				weight: 900;
 			}
 			text-transform: uppercase;
@@ -72,7 +72,10 @@
 			}
 			.content-wrapper {
 				p {
-					max-width: calc(70vw - #{rem(200)});
+					max-width: unset;
+					margin: {
+						right: rem(480);
+					}
 				}
 				img {
 					width: rem(400);
@@ -92,7 +95,10 @@
 			}
 			.content-wrapper {
 				p {
-					max-width: calc(70vw - #{rem(200)});
+					max-width: unset;
+					margin: {
+						left: rem(420);
+					}
 				}
 				img {
 					width: rem(350);
@@ -103,6 +109,17 @@
 			background: {
 				color: rgba($quinaryColor, 0.1);
 			}
+			.content-wrapper {
+				p {
+					max-width: unset;
+					margin: {
+						right: rem(570);
+					}
+				}
+				img {
+					width: rem(500);
+				}
+			}
 		}
 		&.explorer {
 			background: {
@@ -110,6 +127,52 @@
 				size: 1800% 1800%;
 			}
 			animation: rainbow 18s ease infinite;
+			.content-wrapper {
+				p {
+					max-width: unset;
+					margin: {
+						left: rem(470);
+					}
+					span {
+						color: $primaryColor;
+					}
+					em {
+						font: {
+							size: rem(14);
+						}
+					}
+				}
+				img {
+					width: rem(400);
+				}
+			}
+		}
+		&.plug-for-myself {
+			background: {
+				image: linear-gradient(
+					to right, 
+					rgba($primaryColor, 0.3) 0%, 
+					rgba($primaryColor, 0.3) 20%, 
+					rgba($secondaryColor, 0.3) 20%, 
+					rgba($secondaryColor, 0.3) 40%, 
+					rgba($tertiaryColor, 0.3) 40%, 
+					rgba($tertiaryColor, 0.3) 60%, 
+					rgba($quaternaryColor, 0.3) 60%, 
+					rgba($quaternaryColor, 0.3) 80%, 
+					rgba($quinaryColor, 0.3) 80%, 
+					rgba($quinaryColor, 0.3) 100%) !important;
+			}
+			min-height: unset;
+			.content-wrapper {
+				align-items: center;
+				p {
+					font: {
+						weight: 900;
+					}
+					opacity: 1;
+					color: $secondaryColor;
+				}
+			}
 		}
 		// commented out code is to experiment with transition from display none using allow-discrete and then use the @starting-style rule.
 		&.align-left {
@@ -127,7 +190,7 @@
 				}
 			}
 			h2 {
-				transform: translateX(-500px);
+				transform: translateX(rem(-1000));
 				transition: transform ease 0.4s;
 			}
 			img {
@@ -162,18 +225,27 @@
 				transition: transform ease 0.3s;
 			}
 		}
+		&.section-in-view {
+			.content-wrapper {
+				p {
+					opacity: 1;
+				}
+			}
+		}
 		.content-wrapper {
 			position: relative;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			p {
+				opacity: 0;
 				max-width: 70vw;
 				font: {
 					size: rem(18);
 				}
 				color: $secondaryColor;
 				line-height: rem(24);
+				transition: opacity ease 0.8s;
 			}
 			img {
 				width: rem(200);
@@ -194,7 +266,7 @@
 			color: $secondaryColor;
 			span {
 				color: rgba($primaryColor, 0.7);
-				text-shadow: rem(1) 0 rgba($secondaryColor, 0.5);
+				text-shadow: rem(1) 0 rgba($secondaryColor, 0.3);
 			}
 		}
 	}
