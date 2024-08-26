@@ -56,8 +56,8 @@ export default function Projects() {
 							<TextInput label="Name" name="Name" isRequired onValueChange={(value) => setName(value)} />
 							<TextInput label="Email" name="Email" isRequired onValueChange={(value) => setEmail(value)} />
 							<TextInput label="Phone" name="Phone" onValueChange={(value) => setPhone(value)} />
-							<TextInput label="Message" name="Message" onValueChange={(value) => setMessage(value)} />
-							<button type="button" onClick={() => handleSubmit()}>Send</button>
+							<TextInput label="Message" name="Message" isTextArea onValueChange={(value) => setMessage(value)} />
+							<button type="button" className="td-button secondary" onClick={() => handleSubmit()}>Send</button>
 						</form>
 						}
 					</>

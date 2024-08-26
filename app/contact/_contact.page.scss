@@ -1,15 +1,23 @@
 @import "../../ui-component/scss/utility.imports";
+@import "../../ui-component/scss/button";
 
 .contact {
 	background: {
 		color: $quinaryColor;
+		image: url("../../assets/images/connection-network.webp");
+		position: 96% 96%;
+		repeat: no-repeat;
 	}
 	h1 {
 		color: $secondaryColor;
 		margin: {
 			top: rem(100);
 		}
+		text-transform: uppercase;
 		+ p {
+			font: {
+				size: rem(18);
+			}
 			color: $secondaryColor;
 			margin: {
 				bottom: rem(48px);
@@ -17,36 +25,20 @@
 		}
 	}
 	.contact-form {
+		background: {
+			position: 0 100%;
+		};
 		form {
 			display: flex;
 			flex-direction: column;
+			margin: 0 auto;
 			gap: rem(24);
 			max-width: 50vw;
 			label {
-				color: $secondaryColor;
 				font: {
 					family: inherit;
 				}
 			}
-		}
-		button {
-			width: max-content;
-			margin: {
-				left: auto;
-			}
-			background: {
-				color: $quaternaryColor;
-			}
-			border: 0;
-			color: $quinaryColor;
-			font: {
-				size: rem(24);
-				weight: 700;
-			}
-			text-transform: uppercase;
-			box-shadow: rem(2) rem(2) rem(4) rgba($secondaryColor, 0.9);
-			padding: rem(5) rem(30) rem(3);
-			cursor: pointer;
 		}
 	}
 }

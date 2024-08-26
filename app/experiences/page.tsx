@@ -3,6 +3,7 @@ import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
 import Nav from "@/components/nav";
 import { PATH_STORYBOOK } from "@/constants/paths";
 import Footer from "@/components/footer";
+import "./_experiences.page.scss";
 
 export default function Experiences() {
 	return <>

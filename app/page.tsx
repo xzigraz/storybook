@@ -64,6 +64,8 @@ export default function Home() {
 						<p>For the past 17 years, equipped with the most valuable lesson I learned from my program—critical thinking—I have been honing
 							my skills and learning from peers and mentors across various companies. Finally, over the last three years, I have had the
 							opportunity to mentor others and give back.</p>
+						<h3>Skills</h3>
+						
 						<img src={Classroom.src} alt="Digital Media Art Classroom" title="The classroom look the same after I graduated for 17 years." />
 					</>
 				</SectionLayout>

@@ -1,0 +1,23 @@
+@import "../../ui-component/scss/utility.imports";
+
+.experiences {
+	background: {
+		color: $quinaryColor;
+	}
+	h1 {
+		color: $secondaryColor;
+		margin: {
+			top: rem(100);
+		}
+		text-transform: uppercase;
+		+ p {
+			font: {
+				size: rem(18);
+			}
+			color: $secondaryColor;
+			margin: {
+				bottom: rem(48px);
+			}
+		}
+	}
+}
