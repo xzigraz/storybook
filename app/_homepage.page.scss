@@ -48,6 +48,10 @@
 			}
 		}
 	}
+	.graph-container {
+		width: 100%;
+		height: rem(600);
+	}
 	.about-me {
 		margin: {
 			bottom: 0;
@@ -78,6 +82,7 @@
 					}
 				}
 				img {
+					top: rem(80);
 					width: rem(400);
 				}
 			}

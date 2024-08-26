@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./_homepage.page.scss";
 import Daniel from "@/assets/images/daniel.webp";
 import { MainLayout } from "@/ui-component/Layout/mainLayout";
@@ -17,14 +17,28 @@ import isRefInView from "@/ui-component/CheckInview/checkIsInview";
 import Footer from "@/components/footer";
 import Link from "next/link";
 import { PATH_CONTACT, PATH_LINKEDIN, PATH_RESUME } from "@/constants/paths";
+import dynamic from "next/dynamic";
+import { Loading } from "@/ui-component/Loading/loading";
+
+const SkillsetCanvas = dynamic(() => import("@/components/skillset"), {
+	loading: () => <Loading style="rotate"/>,
+	ssr: false
+});
 
 export default function Home() {
-	const husbandRef = useRef(null);
-	const fatherRef = useRef(null);
-	const engineerRef = useRef(null);
-	const fishkeeperRef = useRef(null);
-	const gamerRef = useRef(null);
-	const explorerRef = useRef(null);
+	const husbandRef = useRef<HTMLDivElement>(null);
+	const fatherRef = useRef<HTMLDivElement>(null);
+	const engineerRef = useRef<HTMLDivElement>(null);
+	const fishkeeperRef = useRef<HTMLDivElement>(null);
+	const gamerRef = useRef<HTMLDivElement>(null);
+	const explorerRef = useRef<HTMLDivElement>(null);
+	const [contentWidth, setContentWidth] = useState<number>(0);
+
+	useEffect(() => {
+		if (engineerRef.current) {
+			setContentWidth(engineerRef.current.getBoundingClientRect().width);
+		}
+	}, []);
 
 	return <>
 		<Nav />
@@ -61,11 +75,13 @@ export default function Home() {
 						<p>That is my classroom; it hasn't changed much. My field of study was Digital Media Art, and our course required us to
 							present our projects on a page hosted by the school. In the early 2000s, information as art is the thing, and we created
 							art used mediums like Arduino boards, breadboards, sensors, HTML, CSS, and ActionScript. That's how everything started for me.</p>
-						<p>For the past 17 years, equipped with the most valuable lesson I learned from my program—critical thinking—I have been honing
+						<p className="mb-40">For the past 17 years, equipped with the most valuable lesson I learned from my program—critical thinking—I have been honing
 							my skills and learning from peers and mentors across various companies. Finally, over the last three years, I have had the
 							opportunity to mentor others and give back.</p>
-						<h3>Skills</h3>
-						
+						{isRefInView(engineerRef) && <>
+							<h3>Skillset</h3>
+							<SkillsetCanvas contentWidth={contentWidth} />
+						</>}
 						<img src={Classroom.src} alt="Digital Media Art Classroom" title="The classroom look the same after I graduated for 17 years." />
 					</>
 				</SectionLayout>
