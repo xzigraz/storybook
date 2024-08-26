@@ -34,6 +34,7 @@ export default function Projects() {
 			setIsSubmitSuccess(data.result);
 		})
 		.catch(error => {
+			console.warn(error);
 			setIsLoading(false);
 			setIsSubmitSuccess("error");
 		});

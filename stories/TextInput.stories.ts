@@ -24,11 +24,14 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Minimum: Story = {
-	args: {},
+	args: {
+		name: "Test"
+	},
 };
 
 export const WithLabel: Story = {
 	args: {
+		name: "firstName",
 		label: "First Name"
 	}
 }
