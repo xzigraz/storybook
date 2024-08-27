@@ -19,6 +19,27 @@
 			align-items: center;
 		}
 	}
+	.scrolling-indicator {
+		position: absolute;
+		margin: 0 auto;
+		bottom: rem(20);
+		width: rem(30);
+		height: rem(50);
+		border-radius: rem(30);
+		border: rem(5) solid $secondaryColor;
+		opacity: 0.6;
+		.dot {
+			position: absolute;
+			width: rem(16);
+			height: rem(16);
+			left: calc(15px - 13px);
+			animation: bounding 2s ease-in-out infinite;
+			background: {
+				color: $secondaryColor;
+			}
+			border-radius: 100%;
+		}
+	}
 	.portrait-container {
 		position: relative;
 		filter: drop-shadow(0 0 #{rem(128)} $quaternaryColor);
@@ -288,5 +309,17 @@
 
 	100% {
 		background-position: 0% 82%
+	}
+}
+
+@keyframes bounding {
+	0% {
+		top: rem(3);
+	}
+	50% {
+		top: rem(21);
+	}
+	100% {
+		top: rem(3);
 	}
 }

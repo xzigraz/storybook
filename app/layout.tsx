@@ -9,7 +9,7 @@ const comfortaa = Comfortaa({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: "The Departed Online by Daniel Zhu",
-	description: "A personal portfolio described in a timeline fashion.",
+	description: "A personal portfolio website by veteran Front End engineer with over 17 years of coding, managing and mentoring experiences.",
 };
 
 export default function RootLayout({

@@ -50,6 +50,9 @@ export default function Home() {
 							<img src={Daniel.src} alt="Daniel Zhu" title="Person who owns this website." />
 							<h1>Who is Daniel?</h1>
 						</div>
+						<div className="scrolling-indicator">
+							<span className="dot"/>
+						</div>
 					</>
 				</SectionLayout>
 				<SectionLayout className={clsx("about-me husband align-left", isRefInView(husbandRef) && "section-in-view")} ref={husbandRef}>

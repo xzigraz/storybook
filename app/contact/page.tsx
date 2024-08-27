@@ -46,7 +46,7 @@ export default function Projects() {
 			<>
 				<SectionLayout className="contact-form">
 					<>
-						<h1>Contat Me</h1>
+						<h1>Contact Me</h1>
 						<p>Like what you see so far? Let's talk and see what I can help you with! Here's
 							my <Link href={PATH_RESUME} rel="noopener noreferrer" target="_blank">resume</Link>,
 							and my <a href={PATH_LINKEDIN}>LinkedIn</a>, you can also reach me via the form below.</p>
