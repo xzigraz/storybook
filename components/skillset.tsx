@@ -10,7 +10,7 @@ type CanvasType = {
 const SkillsetCanvas = ({contentWidth}: CanvasType) => {
 	return <ForceGraph3D
 		graphData={Skillset}
-		width={contentWidth - 60}
+		width={contentWidth > 1366 ? 1366 : contentWidth - 60}
 		height={600}
 		nodeAutoColorBy="group"
 		backgroundColor="#011627"
