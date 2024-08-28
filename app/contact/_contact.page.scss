@@ -41,4 +41,16 @@
 			}
 		}
 	}
+	// mobile
+	@include breakpoint(max-width $breakpointsMobile) {
+		.contact-form {
+			form {
+				max-width: unset;
+			}
+		}
+	}
+	// tablet
+	@include breakpoint($breakpointsTablet) {}
+	// desktop
+	@include breakpoint(min-width $breakpointsDesktop) {}
 }

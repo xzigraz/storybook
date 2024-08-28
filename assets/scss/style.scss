@@ -30,7 +30,7 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	padding: rem(20) rem(30);
-	z-index: 1;
+	z-index: 2;
 	// background: {
 	// 	color: rgba($quinaryColor, 0.8);
 	// }
@@ -190,7 +190,9 @@ footer {
 			weight: 700;
 		}
 		span {
-			right: rem(5px);
+			margin: {
+				right: rem(5px);
+			}
 		}
 	}
 	ul {
@@ -215,5 +217,21 @@ footer {
 				fill: $quinaryColor;
 			}
 		}
+	}
+	// mobile
+	@include breakpoint(max-width $breakpointsMobile) {
+		flex-direction: column;
+		align-items: flex-start;
+		ul {
+			padding: 0;
+		}
+	}
+	// tablet
+	@include breakpoint($breakpointsTablet) {
+
+	}
+	// desktop
+	@include breakpoint(min-width $breakpointsDesktop) {
+
 	}
 }

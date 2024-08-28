@@ -44,7 +44,7 @@ export default function Home() {
 		<Nav />
 		<MainLayout className="homepage">
 			<>
-				<SectionLayout className="hero-panel" height="100vh">
+				<SectionLayout className="hero-panel">
 					<>
 						<div className="portrait-container">
 							<img src={Daniel.src} alt="Daniel Zhu" title="Person who owns this website." />
@@ -62,7 +62,7 @@ export default function Home() {
 						<img src={Wife.src} alt="Wife" title="A stunning woman." />
 					</>
 				</SectionLayout>
-				<SectionLayout className={clsx("about-me father align-right", isRefInView(fatherRef) && "section-in-view")} ref={fatherRef} height="400px">
+				<SectionLayout className={clsx("about-me father align-right", isRefInView(fatherRef) && "section-in-view")} ref={fatherRef}>
 					<>
 						<h2><span className="material-symbols-outlined">baby_changing_station</span>Father</h2>
 						<p>These are my kids, and they are my proudest achievements. There are so many horrored stories on the internet about parenthood,

@@ -4,7 +4,7 @@
 	overflow-x: hidden;
 	.hero-panel {
 		width: 100%;
-		height: 100vh;
+		height: 100vh !important;
 		background: {
 			color: $quinaryColor;
 		}
@@ -90,6 +90,7 @@
 			background: {
 				color: rgba($secondaryColor, 0.1);
 			}
+			height: rem(400) !important;
 		}
 		&.engineer {
 			background: {
@@ -298,11 +299,241 @@
 	}
 	// mobile
 	@include breakpoint(max-width $breakpointsMobile) {
-		
+		.about-me {
+			&.section-in-view {
+				.content-wrapper {
+					p {
+						
+					}
+				}
+			}
+			&.align-left {
+				&.section-in-view {
+					img {
+						right: rem(-60);
+					}
+				}
+			}
+			&.align-right {
+				&.section-in-view {
+					img {
+						left: rem(-80);
+					}
+				}
+			}
+			&.father {
+				height: auto !important;
+			}
+			&.engineer {
+				h2 {
+					white-space: nowrap;
+					margin: {
+						bottom: rem(230);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							right: unset;
+						}
+					}
+				}
+			}
+			&.fishkeeper {
+				&.align-right {
+					&.section-in-view {
+						img {
+							top: rem(46);
+							left: rem(-10);
+						}
+					}
+				}
+				h2 {
+					margin: {
+						bottom: rem(270);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							left: unset;
+						}
+					}
+				}
+			}
+			&.gamer {
+				&.align-left {
+					&.section-in-view {
+						img {
+							top: rem(70);
+							right: rem(-80);
+						}
+					}
+				}
+				h2 {
+					margin: {
+						bottom: rem(300);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							right: unset;
+						}
+					}
+				}
+			}
+			.content-wrapper {
+				p {
+					font: {
+						size: rem(22);
+					}
+					z-index: 1;
+					text-shadow: rem(1) rem(1) rem(1) $quinaryColor;
+				}
+			}
+			&.explorer {
+				&.align-right {
+					&.section-in-view {
+						img {
+							top: rem(70);
+							left: rem(-10);
+						}
+					}
+				}
+				h2 {
+					margin: {
+						bottom: rem(300);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							left: unset;
+						}
+					}
+				}
+			}
+		}
 	}
 	// tablet
 	@include breakpoint($breakpointsTablet) {
-
+		.about-me {
+			&.section-in-view {
+				.content-wrapper {
+					p {
+						
+					}
+				}
+			}
+			&.align-left {
+				&.section-in-view {
+					img {
+						right: rem(-60);
+					}
+				}
+			}
+			&.align-right {
+				&.section-in-view {
+					img {
+						left: rem(-80);
+					}
+				}
+			}
+			&.father {
+				height: auto !important;
+			}
+			&.engineer {
+				h2 {
+					white-space: nowrap;
+					margin: {
+						bottom: rem(230);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							right: unset;
+						}
+					}
+				}
+			}
+			&.fishkeeper {
+				&.align-right {
+					&.section-in-view {
+						img {
+							top: rem(46);
+							left: rem(-10);
+						}
+					}
+				}
+				h2 {
+					margin: {
+						bottom: rem(270);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							left: unset;
+						}
+					}
+				}
+			}
+			&.gamer {
+				&.align-left {
+					&.section-in-view {
+						img {
+							top: rem(70);
+							right: rem(-80);
+						}
+					}
+				}
+				h2 {
+					margin: {
+						bottom: rem(300);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							right: unset;
+						}
+					}
+				}
+			}
+			.content-wrapper {
+				p {
+					font: {
+						size: rem(22);
+					}
+					z-index: 1;
+					text-shadow: rem(1) rem(1) rem(1) $quinaryColor;
+				}
+			}
+			&.explorer {
+				&.align-right {
+					&.section-in-view {
+						img {
+							top: rem(70);
+							left: rem(-10);
+						}
+					}
+				}
+				h2 {
+					margin: {
+						bottom: rem(300);
+					}
+				}
+				.content-wrapper {
+					p {
+						margin: {
+							left: unset;
+						}
+					}
+				}
+			}
+		}
 	}
 	// desktop
 	@include breakpoint(min-width $breakpointsDesktop) {
