@@ -6,7 +6,7 @@ export const PATH_LINKEDIN: PATH = "https://www.linkedin.com/in/danielzzhu/";
 
 export const PATH_STORYBOOK: PATH = "//storybook.thedepartedonline.com/";
 
-export const PATH_RESUME: PATH = "/documents/resume.pdf";
+export const PATH_RESUME: PATH = "/documents/resume_8_2024.pdf";
 
 export const PATH_HOME: PATH = "/";
 
