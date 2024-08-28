@@ -296,6 +296,18 @@
 			}
 		}
 	}
+	// mobile
+	@include breakpoint(max-width $breakpointsMobile) {
+		
+	}
+	// tablet
+	@include breakpoint($breakpointsTablet) {
+
+	}
+	// desktop
+	@include breakpoint(min-width $breakpointsDesktop) {
+
+	}
 }
 
 @keyframes rainbow {

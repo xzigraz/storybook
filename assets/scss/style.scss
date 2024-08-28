@@ -34,22 +34,136 @@ nav {
 	// background: {
 	// 	color: rgba($quinaryColor, 0.8);
 	// }
+	.material-symbols-outlined {
+		display: none;
+		background: {
+			color: transparent;
+		}
+		border: unset;
+		box-sizing: none;
+		color: $quaternaryColor;
+		font: {
+			size: rem(48);
+		}
+		transition: all ease 0.3;
+	}
 	ul {
 		display: flex;
-		align-items: center;
-		gap: rem(30px);
 		margin: 0;
 		li {
 			list-style: none;
 			a {
-				display: block;
 				font: {
 					size: rem(24);
-					weight: 700;
 				}
+				text-transform: uppercase;
 				text-decoration: none;
+				color: $quinaryColor;
+			}
+		}
+	}
+	// mobile
+	@include breakpoint(max-width $breakpointsMobile) {
+		.material-symbols-outlined {
+			display: block;
+			z-index: 1;
+			&.nav-open {
+				+ ul {
+					left: 0;
+					li {
+						left: 0;
+					}
+				}
+			}
+		}
+		ul {
+			position: absolute;
+			top: 0;
+			left: 100vw;
+			width: 100vw;
+			height: 100vh;
+			flex-direction: column;
+			padding: 14vh 12vw;
+			gap: rem(45);
+			background: {
 				color: $secondaryColor;
-				filter: drop-shadow(0 0 #{rem(2)} $quinaryColor);
+			}
+			transition: left ease 0.3s;
+			li {
+				position: relative;
+				left: calc(100vw + #{rem(45)});
+				transition: left ease 0.3s;
+				&:first-of-type {
+					transition-delay: 0.1s;
+				}
+				&:nth-of-type(2) {
+					transition-delay: 0.3s;
+				}
+				&:last-of-type {
+					transition-delay: 0.5s;
+				}
+			}
+		}
+	}
+	// tablet
+	@include breakpoint($breakpointsTablet) {
+		.material-symbols-outlined {
+			display: block;
+			z-index: 1;
+			&.nav-open {
+				+ ul {
+					left: 0;
+					li {
+						left: 0;
+					}
+				}
+			}
+		}
+		ul {
+			position: absolute;
+			top: 0;
+			left: 100vw;
+			width: 100vw;
+			height: 100vh;
+			flex-direction: column;
+			padding: 14vh 12vw;
+			gap: rem(45);
+			background: {
+				color: $secondaryColor;
+			}
+			transition: left ease 0.3s;
+			li {
+				position: relative;
+				left: calc(100vw + #{rem(45)});
+				transition: left ease 0.3s;
+				&:first-of-type {
+					transition-delay: 0.1s;
+				}
+				&:nth-of-type(2) {
+					transition-delay: 0.3s;
+				}
+				&:last-of-type {
+					transition-delay: 0.5s;
+				}
+			}
+		}
+	}
+	// desktop
+	@include breakpoint(min-width $breakpointsDesktop) {
+		ul {
+			align-items: center;
+			gap: rem(30);
+			li {
+				a {
+					display: block;
+					font: {
+						size: rem(24);
+						weight: 700;
+					}
+					text-decoration: none;
+					color: $secondaryColor;
+					filter: drop-shadow(0 0 #{rem(2)} $quinaryColor);
+				}
 			}
 		}
 	}
