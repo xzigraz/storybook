@@ -1,11 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Comfortaa, Lexend } from "next/font/google";
+import { Lexend } from "next/font/google";
 import "normalize.css";
 import "@/ui-component/scss/_baseline.scss";
 import "@/assets/scss/style.scss";
 
-const comfortaa = Comfortaa({ subsets: ['latin'] });
 const lexend = Lexend({ subsets: ['latin']});
 
 export const metadata: Metadata = {
