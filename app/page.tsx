@@ -58,7 +58,7 @@ export default function Home() {
 				<SectionLayout className={clsx("about-me engineer align-left", isRefInView(engineerRef) && "section-in-view")} ref={engineerRef}>
 					<>
 						<h2><span className="material-symbols-outlined">code</span>Front-End Development Leader</h2>
-						<h3>Strong hands-on and Experiences people manager</h3>
+						<h3>Strong hands-on engineer and Experienced people manager</h3>
 						<p>That is my classroom; it hasn't changed much. My field of study was Digital Media Art, and our course required us to
 							present our projects on a page hosted by the school. In the early 2000s, information as art is the thing, and we created
 							art used mediums like Arduino boards, breadboards, sensors, HTML, CSS, and ActionScript. That's how everything started for me.</p>
