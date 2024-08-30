@@ -80,7 +80,7 @@
 		min-height: rem(300);
 		&.husband {
 			background: {
-				color: rgba($primaryColor, 0.1);
+				color: rgba($quinaryColor, 0.1);
 			}
 			img {
 				top: rem(20);
@@ -88,14 +88,16 @@
 		}
 		&.father {
 			background: {
-				color: rgba($secondaryColor, 0.1);
+				color: rgba($quaternaryColor, 0.1);
 			}
 			height: rem(400) !important;
 		}
 		&.engineer {
 			background: {
-				color: rgba($tertiaryColor, 0.1);
+				image: linear-gradient(124deg, rgba($primaryColor, 0.2), rgba($secondaryColor, 0.2), rgba($tertiaryColor, 0.2), rgba($quaternaryColor, 0.2), rgba($quinaryColor, 0.2)) !important;
+				size: 1800% 1800%;
 			}
+			animation: rainbow 18s ease infinite;
 			.content-wrapper {
 				p {
 					max-width: unset;
@@ -111,7 +113,7 @@
 		}
 		&.fishkeeper {
 			background: {
-				color: rgba($quaternaryColor, 0.1);
+				color: rgba($primaryColor, 0.1);
 			}
 			&.align-right {
 				&.section-in-view {
@@ -134,7 +136,7 @@
 		}
 		&.gamer {
 			background: {
-				color: rgba($quinaryColor, 0.1);
+				color: rgba($secondaryColor, 0.1);
 			}
 			.content-wrapper {
 				p {
@@ -150,10 +152,8 @@
 		}
 		&.explorer {
 			background: {
-				image: linear-gradient(124deg, rgba($primaryColor, 0.2), rgba($secondaryColor, 0.2), rgba($tertiaryColor, 0.2), rgba($quaternaryColor, 0.2), rgba($quinaryColor, 0.2)) !important;
-				size: 1800% 1800%;
+				color: rgba($tertiaryColor, 0.1);
 			}
-			animation: rainbow 18s ease infinite;
 			.content-wrapper {
 				p {
 					max-width: unset;

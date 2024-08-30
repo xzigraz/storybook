@@ -1,11 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Comfortaa } from "next/font/google";
+import { Comfortaa, Lexend } from "next/font/google";
 import "normalize.css";
 import "@/ui-component/scss/_baseline.scss";
 import "@/assets/scss/style.scss";
 
 const comfortaa = Comfortaa({ subsets: ['latin'] });
+const lexend = Lexend({ subsets: ['latin']});
 
 export const metadata: Metadata = {
 	title: "The Departed Online by Daniel Zhu",
@@ -24,7 +25,7 @@ export default function RootLayout({
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 			</head>
-			<body className={comfortaa.className}>{children}</body>
+			<body className={lexend.className}>{children}</body>
 		</html>
 	);
 }

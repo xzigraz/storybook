@@ -55,26 +55,10 @@ export default function Home() {
 						</div>
 					</>
 				</SectionLayout>
-				<SectionLayout className={clsx("about-me husband align-left", isRefInView(husbandRef) && "section-in-view")} ref={husbandRef}>
-					<>
-						<h2><span className="material-symbols-outlined">join</span>Husband</h2>
-						<p>This is my wife. We have been together for 21 years and I am looking forward to waking up next to her each day.</p>
-						<img src={Wife.src} alt="Wife" title="A stunning woman." />
-					</>
-				</SectionLayout>
-				<SectionLayout className={clsx("about-me father align-right", isRefInView(fatherRef) && "section-in-view")} ref={fatherRef}>
-					<>
-						<h2><span className="material-symbols-outlined">baby_changing_station</span>Father</h2>
-						<p>These are my kids, and they are my proudest achievements. There are so many horrored stories on the internet about parenthood,
-							but I feel like it is a personal thing. Yes, it is not for the faint of heart, but one's heart is filled
-							a bit more each day.</p>
-						<p>People tell me I am ready when I ask myself, "What if I mess up?" It was 9 years ago, I feel pretty good so far.</p>
-						<img src={Kids.src} alt="Kids" title="Two beautiful children." />
-					</>
-				</SectionLayout>
 				<SectionLayout className={clsx("about-me engineer align-left", isRefInView(engineerRef) && "section-in-view")} ref={engineerRef}>
 					<>
-						<h2><span className="material-symbols-outlined">code</span>Front-End Engineer</h2>
+						<h2><span className="material-symbols-outlined">code</span>Front-End Development Leader</h2>
+						<h3>Strong hands-on and Experiences people manager</h3>
 						<p>That is my classroom; it hasn't changed much. My field of study was Digital Media Art, and our course required us to
 							present our projects on a page hosted by the school. In the early 2000s, information as art is the thing, and we created
 							art used mediums like Arduino boards, breadboards, sensors, HTML, CSS, and ActionScript. That's how everything started for me.</p>
@@ -127,6 +111,23 @@ export default function Home() {
 							"garbage in, garbage out," which highlights the importance of quality data in developing effective AI.<span>*</span></p>
 						<p><span>*</span> <em>I used Microsoft Copilot to help me write the above sentence better.</em></p>
 						<img src={NCC1701D.src} alt="Enterprise NCC-1701-D" title="Star fleet Enterprise starship embark on a mission to explore." />
+					</>
+				</SectionLayout>
+				<SectionLayout className={clsx("about-me father align-right", isRefInView(fatherRef) && "section-in-view")} ref={fatherRef}>
+					<>
+						<h2><span className="material-symbols-outlined">baby_changing_station</span>Father</h2>
+						<p>These are my kids, and they are my proudest achievements. There are so many horrored stories on the internet about parenthood,
+							but I feel like it is a personal thing. Yes, it is not for the faint of heart, but one's heart is filled
+							a bit more each day.</p>
+						<p>People tell me I am ready when I ask myself, "What if I mess up?" It was 9 years ago, I feel pretty good so far.</p>
+						<img src={Kids.src} alt="Kids" title="Two beautiful children." />
+					</>
+				</SectionLayout>
+				<SectionLayout className={clsx("about-me husband align-left", isRefInView(husbandRef) && "section-in-view")} ref={husbandRef}>
+					<>
+						<h2><span className="material-symbols-outlined">join</span>Husband</h2>
+						<p>This is my wife. We have been together for 21 years and I am looking forward to waking up next to her each day.</p>
+						<img src={Wife.src} alt="Wife" title="A stunning woman." />
 					</>
 				</SectionLayout>
 				<SectionLayout className="about-me plug-for-myself">
