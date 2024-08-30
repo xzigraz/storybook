@@ -45,10 +45,10 @@
 		filter: drop-shadow(0 0 #{rem(128)} $quaternaryColor);
 		h1 {
 			position: absolute;
-			bottom: rem(-7);
+			bottom: rem(-4);
 			margin: 0;
 			font: {
-				size: rem(39);
+				size: rem(37);
 				weight: 900;
 			}
 			text-transform: uppercase;
@@ -59,12 +59,12 @@
 				position: absolute;
 				left: 0;
 				font: {
-					size: rem(39px);
+					size: rem(37);
 					weight: 900;
 				}
 				text-transform: uppercase;
 				transform: rotate3d(1, 0, 0, 220deg);
-				bottom: rem(-21);
+				bottom: rem(-24);
 				opacity: 0.5;
 			}
 		}
