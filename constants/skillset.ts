@@ -13,7 +13,7 @@ export interface Skill {
 	id: string
 	label: string
 	category: string
-	yoe: number
+	yoe?: number
 }
 
 export type SkillsetType = {

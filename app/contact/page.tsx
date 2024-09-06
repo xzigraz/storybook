@@ -2,9 +2,7 @@
 
 import { MainLayout } from "@/ui-component/Layout/mainLayout";
 import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
-import Nav from "@/components/nav";
 import "./_contact.page.scss";
-import Footer from "@/components/footer";
 import Link from "next/link";
 import { PATH_LINKEDIN, PATH_RESUME } from "@/constants/paths";
 import { TextInput } from "@/ui-component/TextInput/textInput";
