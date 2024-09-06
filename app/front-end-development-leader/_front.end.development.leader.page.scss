@@ -1,0 +1,23 @@
+@import "../../ui-component/scss/utility.imports";
+
+.front-end-development-leader {
+	.skills-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 200px));
+		gap: rem(30);
+	}
+	dl {
+		margin: {
+			top: unset;
+		}
+		dt,
+		dd {
+			color: $secondaryColor;
+		}
+		dt {
+			font: {
+				weight: 900;
+			}
+		}
+	}
+}

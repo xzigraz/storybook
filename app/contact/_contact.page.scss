@@ -3,17 +3,11 @@
 
 .contact {
 	background: {
-		color: $quinaryColor;
 		image: url("../../assets/images/connection-network.webp");
 		position: 96% 96%;
 		repeat: no-repeat;
 	}
 	h1 {
-		color: $secondaryColor;
-		margin: {
-			top: rem(100);
-		}
-		text-transform: uppercase;
 		+ p {
 			font: {
 				size: rem(18);

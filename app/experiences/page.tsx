@@ -6,18 +6,14 @@ import Footer from "@/components/footer";
 import "./_experiences.page.scss";
 
 export default function Experiences() {
-	return <>
-		<Nav />
-		<MainLayout className="experiences">
-			<>
-				<SectionLayout>
-					<>
-						<h1 style={{marginTop: "100px"}}>Experiences</h1>
-						<p>Under construction, meanwhile, checkout my <a href={PATH_STORYBOOK} target="_blank">component library</a> in progress.</p>
-					</>
-				</SectionLayout>
-			</>
-		</MainLayout>
-		<Footer />
-	</>;
+	return <MainLayout className="experiences peach-white">
+		<>
+			<SectionLayout>
+				<>
+					<h1>Experiences</h1>
+					<p>Under construction, meanwhile, checkout my <a href={PATH_STORYBOOK} target="_blank">component library</a> in progress.</p>
+				</>
+			</SectionLayout>
+		</>
+	</MainLayout>;
 }

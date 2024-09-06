@@ -27,22 +27,21 @@ export default function Projects() {
 		submitBody.append("Email", email);
 		submitBody.append("Phone", phone);
 		submitBody.append("Message", message);
-		fetch(sheetWebAppURL, {method: "POST", body: submitBody})
-		.then(res => res.json())
-		.then(data => {
-			setIsLoading(false);
-			setIsSubmitSuccess(data.result);
-		})
-		.catch(error => {
-			console.warn(error);
-			setIsLoading(false);
-			setIsSubmitSuccess("error");
-		});
+		fetch(sheetWebAppURL, { method: "POST", body: submitBody })
+			.then(res => res.json())
+			.then(data => {
+				setIsLoading(false);
+				setIsSubmitSuccess(data.result);
+			})
+			.catch(error => {
+				console.warn(error);
+				setIsLoading(false);
+				setIsSubmitSuccess("error");
+			});
 	}
 
 	return <>
-		<Nav />
-		<MainLayout className="contact">
+		<MainLayout className="contact peach-white">
 			<>
 				<SectionLayout className="contact-form">
 					<>
@@ -50,21 +49,20 @@ export default function Projects() {
 						<p>Like what you see so far? Let's talk and see what I can help you with! Here's
 							my <Link href={PATH_RESUME} rel="noopener noreferrer" target="_blank">resume</Link>,
 							and my <a href={PATH_LINKEDIN}>LinkedIn</a>, you can also reach me via the form below.</p>
-						{isSubmitSuccess === "success" 
+						{isSubmitSuccess === "success"
 							? <p>Thank you for reaching out. I'll get back to you in 24 hours.</p>
 							: <form>
-							<TextInput label="Name" name="Name" isRequired onValueChange={(value) => setName(value)} />
-							<TextInput label="Email" name="Email" isRequired onValueChange={(value) => setEmail(value)} />
-							<TextInput label="Phone" name="Phone" onValueChange={(value) => setPhone(value)} />
-							<TextInput label="Message" name="Message" isTextArea onValueChange={(value) => setMessage(value)} />
-							<button type="button" className="td-button secondary" onClick={() => handleSubmit()}>Send</button>
-						</form>
+								<TextInput label="Name" name="Name" isRequired onValueChange={(value) => setName(value)} />
+								<TextInput label="Email" name="Email" isRequired onValueChange={(value) => setEmail(value)} />
+								<TextInput label="Phone" name="Phone" onValueChange={(value) => setPhone(value)} />
+								<TextInput label="Message" name="Message" isTextArea onValueChange={(value) => setMessage(value)} />
+								<button type="button" className="td-button secondary" onClick={() => handleSubmit()}>Send</button>
+							</form>
 						}
 					</>
 				</SectionLayout>
 			</>
 		</MainLayout>
-		<Footer />
-		{isLoading && <Loading style="rotate"/>}
+		{isLoading && <Loading style="rotate" />}
 	</>;
 }

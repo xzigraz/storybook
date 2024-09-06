@@ -4,6 +4,8 @@ import { Lexend } from "next/font/google";
 import "normalize.css";
 import "@/ui-component/scss/_baseline.scss";
 import "@/assets/scss/style.scss";
+import Nav from "@/components/nav";
+import Footer from "@/components/footer";
 
 const lexend = Lexend({ subsets: ['latin']});
 
@@ -24,7 +26,11 @@ export default function RootLayout({
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 			</head>
-			<body className={lexend.className}>{children}</body>
+			<body className={lexend.className}>
+				<Nav />
+				{children}
+				<Footer/>
+			</body>
 		</html>
 	);
 }

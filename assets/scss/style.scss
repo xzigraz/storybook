@@ -7,9 +7,12 @@
 	--MIOPSZ: 24;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+	color: $secondaryColor;
+}
+
 .material-symbols-outlined {
 	position: relative;
-	top: rem(-2);
 	font-variation-settings:
 		'FILL' var(--MIFill),
 		'wght' var(--MIWeight),
@@ -19,6 +22,23 @@
 
 a {
 	color: $quaternaryColor;
+}
+
+.read-more {
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+	position: relative;
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: rem(3);
+		left: 0;
+		width: 94%;
+		border: {
+			bottom: rem(1) solid $quaternaryColor;
+		}
+	}
 }
 
 nav {
@@ -171,6 +191,39 @@ nav {
 
 .td-main-layout {
 	min-height: calc(100vh - #{rem(84)});
+	&.peach-white {
+		background: {
+			color: $quinaryColor;
+		}
+		.back-container {
+			margin: {
+				top: rem(60);
+				bottom: rem(30);
+			}
+			a {
+				display: flex;
+				align-items: center;
+				text-decoration: none;
+			}
+			.material-symbols-outlined {
+				font: {
+					size: rem(32);
+				}
+			}
+			+ h1 {
+				margin: {
+					top: 0;
+				}
+			}
+		}
+		h1 {
+			color: $secondaryColor;
+			text-transform: uppercase;
+			margin: {
+				top: rem(60)
+			}
+		}
+	}
 }
 
 footer {
