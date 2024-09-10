@@ -9,22 +9,35 @@ import { TextInput } from "@/ui-component/TextInput/textInput";
 import { useState } from "react";
 import { Loading } from "@/ui-component/Loading/loading";
 
+interface FormType {
+	Name: string
+	Email: string
+	Phone?: string
+	Message?: string
+}
+
 export default function Projects() {
-	const [name, setName] = useState<string>("");
-	const [email, setEmail] = useState<string>("");
-	const [phone, setPhone] = useState<string>("");
-	const [message, setMessage] = useState<string>("");
+	const [form, setForm] = useState<FormType>({
+		Name: "",
+		Email: "",
+		Phone: "",
+		Message: ""
+	})
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isSubmitSuccess, setIsSubmitSuccess] = useState<"success" | "error" | null>(null);
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+		setForm({...form, [e.target.name]: e.target.value});
+	}
 
 	const handleSubmit = () => {
 		setIsLoading(true);
 		const sheetWebAppURL = "https://script.google.com/macros/s/AKfycbzzko7KN06ag7jF_2D_YjTu_vd3UBg_QULB9vz11Q682dnOQDItDWnYi-MOpSHzWRQ2CA/exec";
 		const submitBody = new FormData();
-		submitBody.append("Name", name);
-		submitBody.append("Email", email);
-		submitBody.append("Phone", phone);
-		submitBody.append("Message", message);
+		submitBody.append("Name", form?.Name as string);
+		submitBody.append("Email", form?.Email as string);
+		submitBody.append("Phone", form?.Phone as string);
+		submitBody.append("Message", form?.Message as string);
 		fetch(sheetWebAppURL, { method: "POST", body: submitBody })
 			.then(res => res.json())
 			.then(data => {
@@ -50,10 +63,10 @@ export default function Projects() {
 						{isSubmitSuccess === "success"
 							? <p>Thank you for reaching out. I'll get back to you in 24 hours.</p>
 							: <form>
-								<TextInput label="Name" name="Name" isRequired onValueChange={(value) => setName(value)} />
-								<TextInput label="Email" name="Email" isRequired onValueChange={(value) => setEmail(value)} />
-								<TextInput label="Phone" name="Phone" onValueChange={(value) => setPhone(value)} />
-								<TextInput label="Message" name="Message" isTextArea onValueChange={(value) => setMessage(value)} />
+								<TextInput label="Name" name="Name" isRequired onValueChange={(e) => handleInputChange(e)} />
+								<TextInput label="Email" name="Email" isRequired onValueChange={(e) => handleInputChange(e)} />
+								<TextInput label="Phone" name="Phone" onValueChange={(e) => handleInputChange(e)} />
+								<TextInput label="Message" name="Message" isTextArea onValueChange={(e) => handleInputChange(e)} />
 								<button type="button" className="td-button secondary" onClick={() => handleSubmit()}>Send</button>
 							</form>
 						}
