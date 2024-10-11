@@ -9,7 +9,7 @@ import { TextInput } from "@/ui-component/TextInput/textInput";
 import { useState } from "react";
 import { Loading } from "@/ui-component/Loading/loading";
 
-interface FormType {
+export interface FormType {
 	Name: string
 	Email: string
 	Phone?: string
@@ -30,25 +30,15 @@ export default function Projects() {
 		setForm({...form, [e.target.name]: e.target.value});
 	}
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		setIsLoading(true);
-		const sheetWebAppURL = "https://script.google.com/macros/s/AKfycbzzko7KN06ag7jF_2D_YjTu_vd3UBg_QULB9vz11Q682dnOQDItDWnYi-MOpSHzWRQ2CA/exec";
-		const submitBody = new FormData();
-		submitBody.append("Name", form?.Name as string);
-		submitBody.append("Email", form?.Email as string);
-		submitBody.append("Phone", form?.Phone as string);
-		submitBody.append("Message", form?.Message as string);
-		fetch(sheetWebAppURL, { method: "POST", body: submitBody })
-			.then(res => res.json())
-			.then(data => {
-				setIsLoading(false);
-				setIsSubmitSuccess(data.result);
-			})
-			.catch(error => {
-				console.warn(error);
-				setIsLoading(false);
-				setIsSubmitSuccess("error");
-			});
+		await fetch("/api/contact", {method: "POST", body: JSON.stringify(form)})
+		.then(res => res.json())
+		.then(data => {
+			setIsLoading(false);
+			setIsSubmitSuccess(data.result);
+		})
+		.catch(error => console.log(error));
 	}
 
 	return <>

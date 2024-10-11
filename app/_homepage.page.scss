@@ -91,6 +91,11 @@
 				color: rgba($quaternaryColor, 0.1);
 			}
 			height: rem(400) !important;
+			.content-wrapper {
+				p {
+					max-width: 60vw;
+				}
+			}
 		}
 		&.engineer {
 			background: {

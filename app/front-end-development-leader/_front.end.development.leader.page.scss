@@ -18,6 +18,17 @@
 			font: {
 				weight: 900;
 			}
+			margin: {
+				bottom: rem(8);
+			}
+		}
+		dd {
+			line-height: 1;
+			&:not(:last-of-type) {
+				margin: {
+					bottom: rem(8);
+				}
+			}
 		}
 	}
 }

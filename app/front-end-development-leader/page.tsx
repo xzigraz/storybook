@@ -99,7 +99,7 @@ const FrontEndDevelopmentLeader = () => {
 				</SectionLayout>
 				<SectionLayout>
 					<>
-						<h2>Skillset</h2>
+						<h2>Skills</h2>
 						<p>These are the skills I use almost everyday to solve interesting challenges.</p>
 						{skills.length > 0 && <div className="skills-container mb-40">
 							{skills?.map(skill => {
