@@ -7,9 +7,21 @@
 				size: rem(18);
 			}
 			color: $secondaryColor;
-			margin: {
-				bottom: rem(48px);
-			}
+		}
+	}
+	.get-in-touch {
+		position: absolute;
+		top: rem(60);
+		right: rem(40);
+		font: {
+			size: rem(72);
+		}
+		color: $secondaryColor;
+	}
+	// mobile
+	@include breakpoint(max-width $breakpointsMobile) {
+		.get-in-touch {
+			display: none;
 		}
 	}
 }

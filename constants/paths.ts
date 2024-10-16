@@ -7,6 +7,8 @@ export const PATH_LINKEDIN: PATH = "//www.linkedin.com/in/danielzzhu/";
 export const PATH_STORYBOOK: PATH = "//storybook.thedepartedonline.com/";
 
 export const PATH_RESUME: PATH = "/documents/resume_8_2024.pdf";
+export const PATH_ATS_SAFE_LONG_RESUME: PATH = "/documents/resume_daniel_zhu.pdf";
+export const PATH_ATS_SAFE_SHORT_RESUME: PATH = "/documents/resume-daniel-zhu.pdf";
 
 export const PATH_HOME: PATH = "/";
 
