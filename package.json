@@ -49,6 +49,10 @@
       "plugin:storybook/recommended"
     ]
   },
+  "engines": {
+    "npm": ">=9.8.1",
+    "node": ">=18.18.0"
+  },
   "resolutions": {
     "jackspeak": "2.1.1"
   }
