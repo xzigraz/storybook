@@ -6,13 +6,7 @@ import "@/ui-component/scss/_baseline.scss";
 import "@/assets/scss/style.scss";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
-import TagManager from 'react-gtm-module';
-
-const tagManagerArgs = {
-    gtmId: 'G-W9RW6JCCHQ'
-}
-
-TagManager.initialize(tagManagerArgs);
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const lexend = Lexend({ subsets: ['latin']});
 
@@ -37,6 +31,7 @@ export default function RootLayout({
 				<Nav />
 				{children}
 				<Footer/>
+				<GoogleTagManager gtmId="G-W9RW6JCCHQ" /> 
 			</body>
 		</html>
 	);
