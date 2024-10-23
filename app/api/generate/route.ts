@@ -1,5 +1,3 @@
-import { FormType } from "@/app/contact/page";
-
 export async function POST(request: Request) {
 	if (!process.env.WORKER_AI_API_URL || !process.env.WORKER_AI_ACCOUNT_ID || !process.env.WORKER_AI_API_TOKEN) {
 		throw new Error("Cloudflare Workers AI account id and api token are missing.");

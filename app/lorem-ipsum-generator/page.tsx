@@ -23,6 +23,7 @@ export default function LoreumIpsumGeneratorPage() {
 		})
 			.then(res => res.json())
 			.then(data => {
+				setImage(null);
 				setText(data?.result?.response);
 			})
 			.catch(error => console.error(error));
