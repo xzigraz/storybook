@@ -4,11 +4,16 @@ export async function POST(request: Request) {
 	}
 
 	const prompt = await request.json();
+	let model = "google/gemma-7b-it-lora";
 
-	console.log("#### ", prompt);
+	if (prompt?.prompt && (prompt.prompt.toLowerCase().includes("generating an image") || prompt.prompt.toLowerCase().includes("generate an image"))) {
+		model = "black-forest-labs/flux-1-schnell";
+	} else {
+		prompt.prompt += " Wrap html p tag around sentences.";
+	}
 
 	try {
-		const res = await fetch(`${process.env.WORKER_AI_API_URL}${process.env.WORKER_AI_ACCOUNT_ID}/ai/run/@cf/google/gemma-7b-it-lora`, {
+		const res = await fetch(`${process.env.WORKER_AI_API_URL}${process.env.WORKER_AI_ACCOUNT_ID}/ai/run/@cf/${model}`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

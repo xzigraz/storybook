@@ -1,0 +1,25 @@
+@import "../../ui-component/scss/utility.imports";
+
+.lorem-ipsum-generator {
+	.placeholder-text-container {
+		width: 100%;
+		background: {
+			color: #fff;
+		}
+		padding: rem(20);
+		border-radius: rem(6);
+		pre {
+			margin: unset;
+			overflow: auto;
+		}
+	}
+	.images-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		overflow: auto;
+		img {
+			object-fit: contain;
+		}
+	}
+}
