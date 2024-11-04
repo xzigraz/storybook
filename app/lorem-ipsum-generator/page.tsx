@@ -45,8 +45,6 @@ export default function LoreumIpsumGeneratorPage() {
 		setPrompt(e.target.value);
 	}
 
-	console.log(isLoading);
-
 	return <><MainLayout className="experiences lorem-ipsum-generator peach-white">
 		<>
 			<SectionLayout>
