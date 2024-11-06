@@ -1,0 +1,54 @@
+@import "../../ui-component/scss/utility.imports";
+
+.blog-page {
+	.posts {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-rows: rem(180);
+		gap: rem(20);
+	}
+
+	.post {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		overflow: hidden;
+
+		background: {
+			color: #fff;
+		}
+
+		padding: rem(20);
+		border-radius: rem(10);
+
+		h2 {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		div {
+			margin: {
+				bottom: rem(10px);
+			}
+			p {
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+				overflow: hidden;
+			}
+		}
+
+		p {
+			margin: {
+				top: unset;
+				bottom: unset;
+			}
+			&.read-more {
+				&::after {
+					content: none;
+				}
+			}
+		}
+	}
+}
