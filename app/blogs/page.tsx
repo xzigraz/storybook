@@ -10,11 +10,11 @@ async function getPosts() {
 		throw new Error("Server base url is not defined.");
 	}
 
-	let res = await fetch(`${process.env.SERVER_BASE_URL}/api/get-posts`, {
+	const res = await fetch(`${process.env.SERVER_BASE_URL}/api/get-posts`, {
 		method: "POST"
 	});
 
-	let data: POST_DATA = await res.json();
+	const data: POST_DATA = await res.json();
 
 	if (!data || !data.data || !data.data.posts || !data.data.posts.nodes || data.data.posts.nodes.length < 1) {
 		return [];
@@ -24,7 +24,7 @@ async function getPosts() {
 }
 
 const BlogsPage = async () => {
-	let posts: Array<POST> = await getPosts();
+	const posts: Array<POST> = await getPosts();
 
 	return <MainLayout className="blog-page peach-white">
 		<>
