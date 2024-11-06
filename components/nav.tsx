@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Logo from "@/assets/images/thedeparted-logo.png";
-import { PATH_CONTACT, PATH_EXPERIENCES, PATH_HOME } from "@/constants/paths";
+import { PATH_BLOGS, PATH_CONTACT, PATH_EXPERIENCES, PATH_HOME } from "@/constants/paths";
 import clsx from "clsx";
 
 const Nav = () => {
@@ -23,6 +23,9 @@ const Nav = () => {
 			</li>
 			<li>
 				<Link href={PATH_EXPERIENCES}>Experiences</Link>
+			</li>
+			<li>
+				<Link href={PATH_BLOGS}>Blog</Link>
 			</li>
 			<li>
 				<Link href={PATH_CONTACT}>Contact</Link>
