@@ -5,6 +5,8 @@ import "./_blog.page.scss";
 import Link from "next/link";
 import { getBlogPost } from "@/constants/paths";
 
+export const revalidate = 3600;
+
 const getPosts = async () => {
 	if (!process.env.SERVER_BASE_URL || process.env.SERVER_BASE_URL === "") {
 		throw new Error("Server base url is not defined.");
