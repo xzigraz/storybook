@@ -1,4 +1,4 @@
-import { FormType } from "@/app/contact/page";
+import { FormType } from "@/components/contactForm";
 
 export async function POST(request: Request) {
 	if (!process.env.GOOGLE_FORM_ID) {

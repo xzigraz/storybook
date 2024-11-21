@@ -1,6 +1,6 @@
 import { MainLayout } from "@/ui-component/Layout/mainLayout";
 import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
-import { PATH_ATS_SAFE_LONG_RESUME, PATH_ATS_SAFE_SHORT_RESUME, PATH_RESUME, PATH_STORYBOOK } from "@/constants/paths";
+import { PATH_ATS_SAFE_LONG_RESUME, PATH_RESUME, PATH_STORYBOOK } from "@/constants/paths";
 import "./_experiences.page.scss";
 import Link from "next/link";
 import type { Metadata } from "next";

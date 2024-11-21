@@ -8,14 +8,12 @@ import { PATH_LINKEDIN, PATH_RESUME } from "@/constants/paths";
 import { TextInput } from "@/ui-component/TextInput/textInput";
 import { Loading } from "@/ui-component/Loading/loading";
 
-
 export interface FormType {
 	Name: string
 	Email: string
 	Phone?: string
 	Message?: string
 }
-
 
 const ContactForm = () => {
 	const [form, setForm] = useState<FormType>({
