@@ -3,6 +3,12 @@ import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
 import { PATH_ATS_SAFE_LONG_RESUME, PATH_ATS_SAFE_SHORT_RESUME, PATH_RESUME, PATH_STORYBOOK } from "@/constants/paths";
 import "./_experiences.page.scss";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Experiences and Projects | The Departed Online",
+	description: "Showcasing my experiences, projects over the time. The current project is this porfolio site, I will discuss why I did it, how I did it, and what I am going to do next.",
+};
 
 export default function Experiences() {
 	return <MainLayout className="experiences peach-white">
@@ -10,7 +16,7 @@ export default function Experiences() {
 			<SectionLayout>
 				<>
 					<h1>Experiences</h1>
-					<p>Here are my resumes, <Link href={PATH_RESUME}>nice looking one</Link>, <Link href={PATH_ATS_SAFE_LONG_RESUME}>ATS safe long version</Link>, <Link href={PATH_ATS_SAFE_SHORT_RESUME}>ATS safe short version</Link>.</p>
+					<p>Here are my resumes, <Link href={PATH_RESUME}>nice looking one</Link>, <Link href={PATH_ATS_SAFE_LONG_RESUME}>ATS safe version</Link>.</p>
 					<p>If you want to get in touch with me, use the contact page. <span className="material-symbols-outlined get-in-touch">touch_app</span></p>
 				</>
 			</SectionLayout>

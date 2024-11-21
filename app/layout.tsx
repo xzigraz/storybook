@@ -12,7 +12,7 @@ const lexend = Lexend({ subsets: ['latin']});
 
 export const metadata: Metadata = {
 	title: "The Departed Online by Daniel Zhu",
-	description: "A personal portfolio website by veteran Front End engineer with over 17 years of coding, managing and mentoring experiences.",
+	description: "A personal portfolio website by veteran Front End engineer and a leader.",
 };
 
 export default function RootLayout({
