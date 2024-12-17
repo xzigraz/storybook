@@ -1,0 +1,55 @@
+.verkada-page {
+	.floor-layout {
+		display: grid;
+		grid-template-columns: repeat(10, 50px);
+		grid-template-rows: repeat(10, 50px);
+		border: 1px solid blue;
+		width: max-content;
+		div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid blue;
+		}
+	}
+	.floor-layout-9 {
+		display: grid;
+		grid-template-columns: repeat(3, 50px);
+		grid-template-rows: repeat(3, 50px);
+		border: 1px solid blue;
+		width: max-content;
+		div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid blue;
+			&:not(.wall) {
+				cursor: pointer;
+			}
+			&.wall {
+				background: {
+					color: rgba(blue, 0.5);
+				}
+				color: #fff;
+			}
+			&.camera {
+				position: relative;
+				z-index: 2;
+				color: #fff;
+				&::after {
+					position: absolute;
+					content: "";
+					background: {
+						color: red;
+					}
+					width: 40px;
+					height: 40px;
+					border-radius: 100%;
+					z-index: -1;
+				}
+			}
+		}
+	}
+}
