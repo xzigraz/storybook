@@ -96,12 +96,12 @@ const VerkadaPage = () => {
 	const [floorTiles2, setFloorTiles2] = React.useState(Data2);
 	const [floorTiles3, setFloorTiles3] = React.useState(Data3);
 
-	const handleCellClick = (rowIndex, cellIndex, cellValue) => {
+	const handleCellClick = (rowIndex: number, cellIndex: number, cellValue: number) => {
 		if (cellValue === 1) {
 			return;
 		}
 
-		let clonedFloorTiles = _.cloneDeep(floorTiles);
+		const clonedFloorTiles = _.cloneDeep(floorTiles);
 
 		// My Code
 		// clonedFloorTiles.forEach((row, rowInx) => {
@@ -120,24 +120,24 @@ const VerkadaPage = () => {
 		setFloorTiles(clonedFloorTiles);
 	}
 
-	const handleCellClick2 = (cellIndex, cellValue) => {
+	const handleCellClick2 = (cellIndex: number, cellValue: number) => {
 		if (cellValue === 1) {
 			return;
 		}
 
-		let clonedFloorTiles = _.cloneDeep(floorTiles2);
+		const clonedFloorTiles = _.cloneDeep(floorTiles2);
 
 		clonedFloorTiles[cellIndex] = cellValue === 2 ? 0 : 2; 
 
 		setFloorTiles2(clonedFloorTiles);
 	}
 
-	const handleCellClick3 = (cellIndex, cell) => {
+	const handleCellClick3 = (cellIndex: number, cell: {id: number, type: number, name: string, label: string}) => {
 		if (cell.type === 1) {
 			return;
 		}
 
-		let clonedFloorTiles = _.cloneDeep(floorTiles3);
+		const clonedFloorTiles = _.cloneDeep(floorTiles3);
 
 		clonedFloorTiles.forEach((tile, index) => {
 			if (index === cellIndex) {
