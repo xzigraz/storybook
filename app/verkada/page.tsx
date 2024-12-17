@@ -348,6 +348,13 @@ const VerkadaPage = () => {
 			}
 
 			let clonedFloorTiles = _.cloneDeep(floorTiles3);
+			
+			// This would've worked, however, this is still not ideal, since we already know
+			// the index of the tile we click on, so we can do something like
+			//
+			// clonedFloorTiles[cellIndex].type = cell.type === 2 ? 0 : 2;
+			// clonedFloorTiles[cellIndex].name = cell.type === 2 ? "empty": "camera";
+			// clonedFloorTiles[cellIndex].label = cell.type === 2 ? "0" : "2";
 
 			clonedFloorTiles.forEach((tile, index) => {
 				if (index === cellIndex) {
@@ -357,7 +364,7 @@ const VerkadaPage = () => {
 				}
 			})
 
-			setFloorTiles3(clonedFloorTiles);
+			setFloorTiles(clonedFloorTiles);
 		}
 		return <div className="floor-layout">
 			{floorTiles3.map((cell, cellIndex) => 
