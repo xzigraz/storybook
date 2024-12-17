@@ -158,7 +158,7 @@ const VerkadaPage = () => {
 					<h2>The ask</h2>
 					<p>The mock shows a 10 x 10 grid, the cells in the grid will have a number 1, 2, or 0. 1 means it is a wall, when clicked, nothing happens. Click on 2 will change the tile to 0 which means a camera is removed. Click on 0 will change the tile to 2, meaing there's a camera placed in this tile.</p>
 					<p>The data given was something like this.</p>
-					<SyntaxHighlighter language="javascript" style={dracula} wrapLongLines showLineNumbers >
+					<SyntaxHighlighter language="javascript" style={dracula} showLineNumbers >
 {`const Data = [
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -173,7 +173,7 @@ const VerkadaPage = () => {
 ]`}
 					</SyntaxHighlighter>
 					<p>I wrote my code to something like this.</p>
-					<SyntaxHighlighter language="react" style={dracula} wrapLongLines showLineNumbers >
+					<SyntaxHighlighter language="react" style={dracula} showLineNumbers >
 {`
 const App = () => {
 	const [floorTile, setFloorTile] = useState(Data);
@@ -216,7 +216,7 @@ const App = () => {
 					</div>
 					<p>However, in my defense, this data isn't something you will see in real world use case. First of all, we don't need to define array of an arraies to create this grid. It can be a flat list and it'll do the same thing. Like what I did below, so instead of looping twice, you just need to do it once.</p>
 					<p>And in the real world, you will have an array of objects that has additional information in it. Like the Data2 below. And in that case, my forEach loop in the earlier code will work because then it is a reference and I can assign the value to the correct field.</p>
-					<SyntaxHighlighter language="react" style={dracula} wrapLongLines showLineNumbers >
+					<SyntaxHighlighter language="react" style={dracula} showLineNumbers >
 {`
 const Data = [
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -279,7 +279,7 @@ const App = () => {
 							<div key={`${cellIndex}-${Math.random()}`} onClick={() => handleCellClick2(cellIndex, cell)}>{cell}</div>)}
 					</div>
 					<p>The final UI will look like this. I am reducing the grid size, but the idea is the same. And the next part of the ask is to add a dropdown, and based on the dropdown, it's possible to place other devices on the 0 tile. I think I did okay there, but we just didn't have enough time to finish it.</p>
-					<SyntaxHighlighter language="react" style={dracula} wrapLongLines showLineNumbers>
+					<SyntaxHighlighter language="react" style={dracula} showLineNumbers>
 {`
 const Data = [
 	{
