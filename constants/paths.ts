@@ -13,6 +13,7 @@ export const PATH_ATS_SAFE_SHORT_RESUME: PATH = "/documents/resume-daniel-zhu.pd
 export const PATH_HOME: PATH = "/";
 
 export const PATH_EXPERIENCES: PATH = "/experiences";
+export const getExperience = (slug: string): PATH => `${PATH_EXPERIENCES}/${slug}`;
 
 export const PATH_BLOGS: PATH = "/blogs";
 

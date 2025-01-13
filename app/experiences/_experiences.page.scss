@@ -18,6 +18,21 @@
 		}
 		color: $secondaryColor;
 	}
+	.projects-container {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: rem(20);
+	}
+	.project-summary {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		p {
+			margin: {
+				top: 0;
+			}
+		}
+	}
 	// mobile
 	@include breakpoint(max-width $breakpointsMobile) {
 		.get-in-touch {
