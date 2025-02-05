@@ -24,7 +24,7 @@ export default function Home() {
 	const gamerRef = useRef<HTMLDivElement>(null);
 	const explorerRef = useRef<HTMLDivElement>(null);
 
-	return <MainLayout className="homepage">
+	return <MainLayout className="homepage jest-setup-test">
 		<>
 			<SectionLayout className="hero-panel">
 				<>
