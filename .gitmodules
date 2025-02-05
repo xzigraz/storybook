@@ -1,3 +1,3 @@
 [submodule "ui-component"]
 	path = ui-component
-	url = git@github.com-xzigraz:xzigraz/storybook.git
+	url = https://github.com/xzigraz/ui-component.git
