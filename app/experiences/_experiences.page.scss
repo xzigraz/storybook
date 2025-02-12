@@ -27,16 +27,109 @@
 		display: flex;
 		flex-direction: column;
 		text-decoration: none;
+
+		background: {
+			color: #fff;
+		}
+
+		padding: rem(20);
+		border-radius: rem(10);
+		h3 {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
 		p {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			overflow: hidden;
 			margin: {
 				top: 0;
 			}
+		}
+	}
+	.screenshots-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		gap: rem(10px);
+		img {
+			width: 100%;
+			height: rem(400);
+			object-fit: cover;
+			object-position: center top;
+			cursor: pointer;
 		}
 	}
 	// mobile
 	@include breakpoint(max-width $breakpointsMobile) {
 		.get-in-touch {
 			display: none;
+		}
+	}
+}
+
+dialog {
+	display: none;
+	position: fixed;
+	top: 4vh;
+	left: 4vw;
+	right: 4vw;
+	bottom: 4vh;
+	max-height: 92vh;
+	overflow-y: auto;
+	background: {
+		color: #fff;
+	}
+	border: 0;
+	padding: rem(50);
+	flex-direction: column;
+	&[open] {
+		display: flex;
+		z-index: 11;
+		.close-button {
+			display: block;
+		}
+		+ .modal-mask {
+			display: block;
+			z-index: 10;
+		}
+	}
+	img {
+		width: 100%;
+	}
+	+ .modal-mask {
+		display: none;
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		background: {
+			color: rgba(#000, 0.9);
+		}
+	}
+	.close-button {
+		display: none;
+		position: fixed;
+		top: rem(25);
+		right: rem(25);
+		background: {
+			color: #fff;
+		};
+		border: unset;
+		border-radius: 100%;
+		cursor: pointer;
+		width: rem(50);
+		height: rem(50);
+		span {
+			display: flex;
+			flex-direction: column;
+			align-self: center;
+			font: {
+				size: rem(40);
+			}
 		}
 	}
 }

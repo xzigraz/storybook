@@ -26,7 +26,7 @@ export default function Experiences() {
 					<h2>Projects</h2>
 					{Projects.length && <div className="projects-container">
 						{Projects.map(project =>
-							<Link href={getExperience(project.slug)} className="project-summary" key={project.name}>
+							<Link href={getExperience(project.slug)} className="project-summary" key={project.name} title={project.summary}>
 								<h3>{project.label}</h3>
 								<p>{project.summary}</p>
 							</Link>

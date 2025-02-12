@@ -4,7 +4,7 @@ export default interface PROJECT {
 	name: string
 	label: string
 	slug: string
-	summary?: string | null
+	summary: string
 	thumbnail?: PATH | string | null
 }
 export const Projects: PROJECT[] = [
@@ -19,5 +19,11 @@ export const Projects: PROJECT[] = [
 		label: "UI Component",
 		slug: "ui-component",
 		summary: "Yet another component library"
-	}
+	},
+	{
+		name: "inxeption-dot-com",
+		label: "inxeption.com",
+		slug: "inxeption-com",
+		summary: "inxeption.com is the cumulation of all the service offerings from Inxeption Platform to do business better."
+	},
 ]
