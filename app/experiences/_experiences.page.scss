@@ -53,13 +53,25 @@
 	.screenshots-container {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-		gap: rem(10px);
+		gap: rem(30px);
+		.screenshot-container {
+			display: flex;
+			flex-direction: column;
+			p {
+				margin: {
+					top: unset;
+				}
+			}
+		}
 		img {
 			width: 100%;
 			height: rem(400);
 			object-fit: cover;
 			object-position: center top;
 			cursor: pointer;
+			margin: {
+				bottom: rem(5)
+			}
 		}
 	}
 	// mobile
