@@ -56,7 +56,7 @@ export const LayoutForSection: Story = {
 					<p>Anything can be throw into this section layout and each section can have the same content max width regardless whether there's background that bleeds to the edge of the screen or not.</p>
 				</>
 			</SectionLayout>
-			<SectionLayout bgImg={StarNight.src}>
+			<SectionLayout bgImg={StarNight.src} isBgFullWidth>
 				<>
 					<h2>This is a section with background image bleeds to the edge of the screen.</h2>
 				</>
