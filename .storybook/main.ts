@@ -1,26 +1,26 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+import type { StorybookConfig } from "@storybook/nextjs-vite";
 
 const config: StorybookConfig = {
-	stories: [
+    stories: [
 		"../stories/**/*.mdx",
 		"../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
 	],
-	addons: [
-		"@storybook/addon-onboarding",
-		"@storybook/addon-links",
-		"@storybook/addon-essentials",
-		"@chromatic-com/storybook",
-		"@storybook/addon-interactions"
-	],
-	framework: {
-		name: "@storybook/nextjs",
+
+    addons: [
+        "@storybook/addon-onboarding",
+        "@storybook/addon-links",
+        "@chromatic-com/storybook",
+        "@storybook/addon-docs"
+    ],
+
+    framework: {
+		name: "@storybook/nextjs-vite",
 		options: {},
 	},
-	docs: {
-		autodocs: "tag",
-	},
-	staticDirs: ["../public"],
-	previewHead: (head) => `
+
+    staticDirs: ["../public"],
+
+    previewHead: (head) => `
 		${head}
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

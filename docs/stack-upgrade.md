@@ -195,8 +195,8 @@ actually running it:
   same pre-existing error signature regardless of the Next/React version.
 - Two of the fixes above (`RefObject<HTMLElement | null>` typing — from before this
   sub-phase's own work, plus the `useIsRefInView` rename) live in the `ui-component`
-  submodule's working tree, a separate git repo with its own remote — not yet
-  committed/pushed there.
+  submodule — committed and pushed there (`53e13d9`), with this repo's gitlink updated
+  to match.
 
 ### 2b. Storybook
 
@@ -205,6 +205,45 @@ actually running it:
 - `eslint-plugin-storybook@10.4.6` requires `storybook: ^10.4.6` as a peer, so its bump
   is tied to this sub-phase even though it's an ESLint plugin — can't cleanly land it
   in 2c on its own.
+
+**What actually happened (2b is done):** used Storybook's own `storybook@<major>
+upgrade` CLI rather than hand-picking package versions — for a 2-major jump this is
+more reliable than guessing which packages got merged/renamed. The tool itself
+refused to jump straight from 8→10 (`storybook@latest upgrade` hit a "Major Version
+Gap Detected" blocker) and recommended stepping through one major at a time, so that's
+what happened:
+
+- **8 → 9** (`storybook@9 upgrade --yes`): automigrations removed
+  `@storybook/addon-essentials`, `@storybook/addon-interactions`, `@storybook/blocks`,
+  and `@storybook/test` (all merged into core / consolidated in Storybook 9 — confirmed
+  via registry that none of them published past `8.6.x`), added
+  `@storybook/addon-docs`, and rewrote `.storybook/main.ts` accordingly (dropped the
+  `docs.autodocs` setting, added `addon-docs` to the addons list).
+- **`@chromatic-com/storybook` needed its own, separate bump** — it's a third-party
+  Chromatic-maintained addon, not part of Storybook's own automigration. Still pinned
+  at `1.3.5`, its `manager.mjs` imports old pre-consolidation package names
+  (`@storybook/manager-api`, `@storybook/theming`, etc.) that no longer resolve.
+  Checked its version history for a build that actually supports Storybook 9 as a
+  bridge (`4.1.1`, peer range includes `^9.0.0`) rather than jumping straight to the
+  final `5.2.1` (which requires `^10.1.0+`), to keep the 9.x checkpoint independently
+  verifiable.
+- **`@storybook/nextjs@9.1.20` doesn't support Next 16** — `build-storybook` failed
+  with `TypeError: swc.isWasm is not a function` inside its internal
+  `next-swc-loader-patch.js`, a genuine gap in the 9.x line's Next.js integration
+  against Next 16's SWC bindings API. Not something to work around; this is exactly
+  why Storybook recommends the step-through-one-major-at-a-time path — 9 is a
+  migration waypoint, not a place to expect full Next 16 compatibility.
+- **9 → 10** (`storybook@10 upgrade --yes`): the automigration's answer to the above
+  was `nextjs-to-nextjs-vite` — it replaced `@storybook/nextjs` (webpack-based, the
+  thing that broke) with `@storybook/nextjs-vite` (Vite-based), adding `vite@^7.0.0`
+  as a new dependency and updating `.storybook/main.ts`'s framework name accordingly.
+  This sidesteps the SWC incompatibility entirely rather than patching around it.
+  Bumped `@chromatic-com/storybook` to its final `5.2.1` (needs `storybook ^10.1.0+`)
+  at the same time.
+- Verified via `pnpm build-storybook` (succeeds), `pnpm storybook` (dev server boots,
+  `/` and `/iframe.html` both 200), `pnpm test`, `pnpm lint` (clean), `pnpm build`
+  (compiles and type-checks; `/blogs` still hits the same known external WordPress
+  outage from 2a, unrelated), and `pnpm dev` hitting every non-blog route (all 200).
 
 ### 2c. ESLint
 
