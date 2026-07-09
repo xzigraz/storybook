@@ -6,13 +6,31 @@ I have started looking for a new position, but my old site is really outdated. I
 
 ## Project Setup
 - Clone this repo
-- Run `yarn` to install all the dependencies
+- Run `pnpm install` to install all the dependencies
 - Run `git submodule update --init` to pull in the code from the `ui-component` repo.
-- Run `yarn dev` to start the local dev server
-- Run `yarn build` to compile production code
-- Run `yarn start` to start the local production server
-- Run `yarn storybook` to start the storybook server
-- Run `yarn build-storybook` to compile production storybook code
+- Copy `.env.template` to `.env` and fill in the values (see [Environment Variables](#environment-variables) below).
+- Run `pnpm dev` to start the local dev server
+- Run `pnpm build` to compile production code
+- Run `pnpm start` to start the local production server
+- Run `pnpm storybook` to start the storybook server
+- Run `pnpm build-storybook` to compile production storybook code
+- Run `pnpm test` to run the Jest/React Testing Library unit tests
+- Run `pnpm lint` to lint the codebase
+
+## Environment Variables
+The site relies on a few external services, configured through environment variables (see `.env.template`):
+- `GOOGLE_FORM_ID` - endpoint for a Google Form/Sheet webapp used to store contact form submissions.
+- `WORKER_AI_API_URL`, `WORKER_AI_ACCOUNT_ID`, `WORKER_AI_API_TOKEN` - Cloudflare Workers AI credentials, used by the `/api/generate` endpoint to power the Lorem Ipsum generator demo (text and image generation).
+- `WORDPRESS_GRAPHQL_URL` - GraphQL endpoint for the headless WordPress instance that serves the blog posts.
+- `SERVER_BASE_URL` - base URL used for server-side data fetching.
+- `GTM_ID` - Google Tag Manager container ID.
+
+## Pages
+- **Home** - short introduction about myself.
+- **Experiences** - professional and personal projects, including dedicated pages for The Departed Online, ui-component, and Inxeption.com, with screenshots.
+- **Blog** - posts pulled from a headless WordPress instance via GraphQL, including write-ups like the Front-End Development Leader and Verkada pieces.
+- **Lorem Ipsum Generator** - a small demo that calls Cloudflare Workers AI to generate placeholder text/images.
+- **Contact** - a form that posts to a Google Form, so I get an email notification for every new entry.
 
 ## Deployment
 I am using Netlify to handle the deployment for the portfolio site and the storybook site.
@@ -21,12 +39,15 @@ The portfolio pipeline will run the NextJS build script and serve the site from 
 
 I am using Squarespace to manage my domain, for the storybook site, I created a subdomain under my domain. In the Netlify, I added my custom domains for the two deployments and then updated DNS records.
 
+## Testing
+Unit tests are written with Jest and React Testing Library and live alongside the source files (e.g. `app/page.test.tsx`). Run them with `pnpm test`.
+
 ## Roadmap
-For initial phase, I just want to set up a site with the following pages:
- - Homepage: talk about myself a little bit
- - Experiences: My professional and personal projects
- - Contact: A way to get in touch with me.
+See `docs/FEATURES.md` for a record of what's already been built.
 
-I don't have a lot of backend experiences. I have used PHP, MySQL, PostGresSQL, and GraphQL, but not enough to set up my own backend server, create api endpoints where I am able send request to to store contact info. So, I am using Google Sheet and set it up as an Webapp and use it as my endpoint. I can also get notifications when there's new entry. Perfect for my usecase.
-
-After this, I would like to expand on what the site can do, use as many as possible the free available microservices out there to build something cool. I would also like to improve the tooling so that I can put restrictions on code commits, making sure code is automatically linted, and automatic tests when I or somebody else try to commit code.
+Forward-looking:
+- Migrate the blog's content source off the free WordPress GraphQL hosting (which has
+  proven unreliable) to a dedicated public GitHub repo of markdown files, fetched via
+  raw.githubusercontent.com. See `docs/adr/0002-migrate-blog-content-source-to-github-markdown.md`
+  for the full design.
+- Increase test coverage beyond the current single smoke test (scope not yet decided).

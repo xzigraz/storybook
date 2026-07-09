@@ -1,0 +1,6 @@
+# Build command and publish directory are intentionally left unset here — the
+# portfolio site and the storybook site are two separate Netlify sites built from
+# this one repo, each with its own Build command / Publish directory configured in
+# its Netlify dashboard. This file only pins what's common to both.
+[build.environment]
+  NODE_VERSION = "18.18.0"
