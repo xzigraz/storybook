@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { fn } from 'storybook/test';
 import { Loading } from '@/ui-component/Loading/loading';
 import LoadingExample from './Loading';
 

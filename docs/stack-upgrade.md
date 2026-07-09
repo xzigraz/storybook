@@ -260,6 +260,49 @@ what happened:
   findings under `stories/` that were never caught before; fix those as part of this
   sub-phase rather than suppressing them.
 
+**What actually happened (2c is done):** landed `eslint@10.6.0`, `typescript-eslint@8.63.0`,
+`@next/eslint-plugin-next@16.2.10` (the bump deferred from 2a once its flat-only
+`recommended` config could actually be loaded), and a new `eslint.config.mjs`
+replacing `.eslintrc.cjs`. Checked each plugin's actual flat-config export shape
+before writing it, rather than guessing:
+
+- `@next/eslint-plugin-next`'s dist source shows it ships *both* `configs.recommended`
+  (flat-shaped, the one that broke legacy loading in 2a) and
+  `configs['recommended-legacy']` (plain rules object, for exactly this kind of
+  staged migration) — used `configs.recommended` now that we're on flat config for
+  real.
+- `eslint-plugin-react-hooks@7.1.1` exports `configs.flat.recommended` and
+  `configs.flat['recommended-latest']` (a newer, larger rule set). Used `recommended`
+  to match what was already verified working in 2a/2b rather than opting into
+  additional unaudited rules as a side effect of the config migration.
+- `eslint-plugin-storybook@10.4.6` exports `configs['flat/recommended']` as an array
+  of three configs already scoped to `**/*.stories.*`/`**/*.story.*` and
+  `.storybook/main.*` — spread directly into the config array.
+- `@eslint/js` (`js.configs.recommended`) and `typescript-eslint`
+  (`tseslint.configs.recommended`, via the `tseslint.config()` helper that flattens
+  everything) cover the old `eslint:recommended` / `plugin:@typescript-eslint/recommended`.
+- Flat config has no `env` key — added the `globals` package for
+  `globals.browser`/`globals.es2020`, matching the old `.eslintrc.cjs` `env` block.
+- Removed the dead `package.json` `eslintConfig` key entirely (superseded by the new
+  file, and it was inert anyway per the finding above).
+- Widened the `lint` script from the 2a-narrowed `eslint app components constants` to
+  plain `eslint .`, now that the flat config's own `ignores` (node_modules, `.next`,
+  `storybook-static`, the `ui-component` submodule, `public`) does the exclusion work
+  that manually listing directories used to do. This is what actually turns the
+  Storybook rules on for real — running against the full repo surfaced two genuine,
+  previously-uncaught issues:
+  - `__mocks__/fileMock.js` uses `module.exports` (Node context) but the base
+    `languageOptions.globals` only covered browser globals — added a second
+    `languageOptions` override scoped to `__mocks__/**`, `tests/**`,
+    `*.config.{js,cjs,mjs,ts}`, and `.storybook/**` supplying `globals.node`.
+  - `stories/Loading.stories.tsx` imported `fn` from `storybook/test` (left over from
+    the 2b automigration's import rewrite) but never actually used it — a genuinely
+    dead import, invisible until `stories/` was ever linted. Removed it.
+- Verified via `pnpm lint` (clean across the whole repo, only the same pre-existing
+  `<img>`/font warnings), `pnpm test`, `pnpm build` (compiles/type-checks; `/blogs`
+  still the known external outage), `pnpm build-storybook`, and `pnpm dev` across
+  every non-blog route (all 200).
+
 ### 2d. three.js stack
 
 - **Dead dependency found**: `package.json` lists `"three.js": "0.77.1"` in

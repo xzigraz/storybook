@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint app components constants",
+    "lint": "eslint .",
     "test": "jest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -32,7 +32,7 @@
     "three-spritetext": "1.8.2",
     "three.js": "0.77.1",
     "ts-node": "10.9.2",
-    "typescript-eslint": "8.2.0"
+    "typescript-eslint": "8.63.0"
   },
   "devDependencies": {
     "@babel/core": "7.26.7",
@@ -40,7 +40,8 @@
     "@babel/preset-react": "7.26.3",
     "@babel/preset-typescript": "7.26.0",
     "@chromatic-com/storybook": "5.2.1",
-    "@next/eslint-plugin-next": "14.2.7",
+    "@eslint/js": "10.0.1",
+    "@next/eslint-plugin-next": "16.2.10",
     "@storybook/addon-links": "10.4.6",
     "@storybook/addon-onboarding": "10.4.6",
     "@types/lodash": "4.17.15",
@@ -48,20 +49,16 @@
     "@types/react": "19",
     "@types/react-dom": "19",
     "babel-jest": "29.7.0",
-    "eslint": "8",
+    "eslint": "10",
     "eslint-plugin-react-hooks": "7.1.1",
     "eslint-plugin-storybook": "10.4.6",
+    "globals": "17.7.0",
     "identity-obj-proxy": "3.0.0",
     "storybook": "10.4.6",
     "typescript": "5",
     "@storybook/addon-docs": "10.4.6",
     "@storybook/nextjs-vite": "10.4.6",
     "vite": "^7.0.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
   },
   "engines": {
     "npm": ">=9.8.1",
