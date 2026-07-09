@@ -12,7 +12,7 @@ import FishTank from "@/assets/images/fish-tank.webp";
 import Games from "@/assets/images/games.webp";
 import NCC1701D from "@/assets/images/ncc-1701-d.webp";
 import clsx from "clsx";
-import isRefInView from "@/ui-component/CheckInview/checkIsInview";
+import useIsRefInView from "@/ui-component/CheckInview/checkIsInview";
 import Link from "next/link";
 import { PATH_CONTACT, PATH_FRONT_END_DEVELOPMENT_LEADER, PATH_LINKEDIN, PATH_RESUME } from "@/constants/paths";
 
@@ -37,7 +37,7 @@ export default function Home() {
 					</div>
 				</>
 			</SectionLayout>
-			<SectionLayout className={clsx("about-me engineer align-left", isRefInView(engineerRef) && "section-in-view")} ref={engineerRef}>
+			<SectionLayout className={clsx("about-me engineer align-left", useIsRefInView(engineerRef) && "section-in-view")} ref={engineerRef}>
 				<>
 					<h2><span className="material-symbols-outlined">code</span>Front-End Development Leader</h2>
 					<h3>Strong hands-on engineer and Experienced people manager</h3>
@@ -50,7 +50,7 @@ export default function Home() {
 					<img src={Classroom.src} alt="Digital Media Art Classroom" title="The classroom look the same after I graduated for 17 years." />
 				</>
 			</SectionLayout>
-			<SectionLayout className={clsx("about-me fishkeeper align-right", isRefInView(fishkeeperRef) && "section-in-view")} ref={fishkeeperRef}>
+			<SectionLayout className={clsx("about-me fishkeeper align-right", useIsRefInView(fishkeeperRef) && "section-in-view")} ref={fishkeeperRef}>
 				<>
 					<h2><span className="material-symbols-outlined">pets</span>Fish Keeper</h2>
 					<p>This is my older kid's aquarium, I have been keeping it since the start of the COVID-19 pandemic. With the help from Youtube
@@ -62,7 +62,7 @@ export default function Home() {
 					<img src={FishTank.src} alt="Planted Freshwater Aquarium" title="A 20 gallon planted freshwater aquarium with a sustainable ecosystem." />
 				</>
 			</SectionLayout>
-			<SectionLayout className={clsx("about-me gamer align-left", isRefInView(gamerRef) && "section-in-view")} ref={gamerRef}>
+			<SectionLayout className={clsx("about-me gamer align-left", useIsRefInView(gamerRef) && "section-in-view")} ref={gamerRef}>
 				<>
 					<h2><span className="material-symbols-outlined">videogame_asset</span>Gamer</h2>
 					<p>I enjoy playing video games, but I only play when I have a lot of free time. That's why I played World of
@@ -73,7 +73,7 @@ export default function Home() {
 					<img src={Games.src} alt="Games I used to play" title="Eve online as the back drop, we have Ultima Online, WOW, Final Fantasy XI Online, and Witcher 3." />
 				</>
 			</SectionLayout>
-			<SectionLayout className={clsx("about-me explorer align-right", isRefInView(explorerRef) && "section-in-view")} ref={explorerRef}>
+			<SectionLayout className={clsx("about-me explorer align-right", useIsRefInView(explorerRef) && "section-in-view")} ref={explorerRef}>
 				<>
 					<h2><span className="material-symbols-outlined">explore</span>Explorer</h2>
 					<p>My favorite thing is Star Trek. I learned English watching Star Trek series when I first came to the United States. High school
@@ -91,7 +91,7 @@ export default function Home() {
 					<img src={NCC1701D.src} alt="Enterprise NCC-1701-D" title="Starfleet Enterprise starship embarks on a mission to explore." />
 				</>
 			</SectionLayout>
-			<SectionLayout className={clsx("about-me father align-right", isRefInView(fatherRef) && "section-in-view")} ref={fatherRef}>
+			<SectionLayout className={clsx("about-me father align-right", useIsRefInView(fatherRef) && "section-in-view")} ref={fatherRef}>
 				<>
 					<h2><span className="material-symbols-outlined">baby_changing_station</span>Father</h2>
 					<p>These are my kids, and they are my proudest achievements. There are so many horror stories on the internet about parenthood,
@@ -101,7 +101,7 @@ export default function Home() {
 					<img src={Kids.src} alt="Kids" title="Two beautiful children." />
 				</>
 			</SectionLayout>
-			<SectionLayout className={clsx("about-me husband align-left", isRefInView(husbandRef) && "section-in-view")} ref={husbandRef}>
+			<SectionLayout className={clsx("about-me husband align-left", useIsRefInView(husbandRef) && "section-in-view")} ref={husbandRef}>
 				<>
 					<h2><span className="material-symbols-outlined">join</span>Husband</h2>
 					<p>This is my wife. We have been together for 21 years and I am looking forward to waking up next to her each day.</p>

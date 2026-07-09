@@ -131,6 +131,73 @@ not a tangle of four simultaneous major bumps.
   React 19 isn't guaranteed by the peer range alone — real verification happens in
   2d.
 
+**What actually happened (2a is done):** landed `next@16.2.10`, `react@19.2.7`,
+`react-dom@19.2.7`, `@next/third-parties@16.2.10`, `@types/react@19.2.17`,
+`@types/react-dom@19.2.3`, `engines.node` raised to `>=20.9.0`, `pnpm.overrides`
+updated from `"18"` to `"19"` for react/react-dom/@types (the override was still
+force-pinning 18, which would have silently blocked the whole upgrade if left as-is).
+The known `params` fix landed as planned. Several more things surfaced only by
+actually running it:
+
+- **`next lint` no longer exists** — Next 16 removed the subcommand entirely
+  (confirmed via `next --help`). The `"lint": "next lint"` script was simply broken,
+  not something deferrable to 2c. Fixed to call `eslint` directly, scoped to
+  `app components constants` — deliberately matching `next lint`'s old default scope
+  and *not* widening to `stories`/`tests`/`__mocks__`, since "actually enable the
+  Storybook lint rules" is explicitly 2c's decision, not 2a's.
+- **`eslint-config-next` was dead** — grepped and confirmed it was never referenced
+  in `.eslintrc.cjs` (only `@next/eslint-plugin-next`, via
+  `plugin:@next/next/recommended`, is actually used). Removed entirely rather than
+  bumped.
+- **`@next/eslint-plugin-next@16.2.10`'s `recommended` config is flat-config-only** —
+  loading it through the legacy `.eslintrc.cjs` (still on ESLint 8 until 2c) throws
+  `Unexpected top-level property "name"`. Bumping this plugin now would force the
+  ESLint flat-config migration into 2a, the same shape of cross-phase collision as
+  Phase 1's pnpm-version/Node-floor conflict. Same resolution pattern: kept
+  `@next/eslint-plugin-next` pinned at the old `14.2.7` for now; its bump to `16.2.10`
+  is deferred to 2c, landing together with the actual flat-config migration.
+- **`eslint-plugin-react-hooks` was an undeclared phantom dependency** — `.eslintrc.cjs`
+  references `plugin:react-hooks/recommended` directly, but it was never in
+  `package.json`; it only resolved before because `next lint` supplied it from Next's
+  own internal dependency graph, not this project's. Added explicitly at `7.1.1`
+  (chosen specifically because it supports `eslint` 8 through 10 — won't need
+  touching again in 2c).
+- **That version bump enabled far more "rules of react" than before**, surfacing two
+  real, pre-existing bugs once lint could actually run:
+  - `app/verkada/page.tsx` used `Math.random()` to generate React `key`s in two spots
+    — an actual anti-pattern (unstable keys cause needless remounts), flagged by the
+    new `react-hooks/purity` rule. Fixed to use stable `rowIndex`/`cellIndex`-based
+    keys.
+  - `ui-component/CheckInview/checkIsInview.ts` exports a function that internally
+    uses `useState`/`useEffect` — it's a custom hook — but was named `isRefInView`,
+    not `useIsRefInView`. Without the `use` prefix, ESLint's hook-detection heuristic
+    doesn't recognize it as hook-safe, so the new `react-hooks/refs` rule flagged all
+    6 call sites in `app/page.tsx` as potentially reading `ref.current` during render.
+    Renamed to `useIsRefInView` (in the `ui-component` submodule, plus the import and
+    6 call sites in `app/page.tsx`) rather than suppressing the rule — this is a
+    real, if latent, naming bug that happened to work before only because linting on
+    this file was effectively broken.
+- **A pre-existing Sass import bug surfaced by Turbopack**: Next 16 defaults `next
+  build` to Turbopack, whose Sass resolution doesn't fall back to project-root-relative
+  imports the way webpack's `sass-loader` silently did. `assets/scss/style.scss` had
+  `@import "./ui-component/scss/utility.imports"` (missing the `../../` the very next
+  line correctly uses for the same target directory) — only ever worked by accident.
+  Fixed the path rather than adding Turbopack config to preserve the accidental
+  behavior.
+- **`/blogs` and `/blogs/[slug]` fail to build/render** — but traced to the free
+  WordPress host itself being down right now (`curl`ing
+  `thedepartedonline.atwebpages.com` directly returns HTTP 530, its own
+  suspended-hosting placeholder page, not GraphQL), confirmed unrelated to this
+  upgrade. Per explicit decision, treated as a known external outage rather than a 2a
+  regression — this is exactly the reliability problem the (separate, not-yet-started)
+  CMS migration roadmap item exists to fix. Verified 2a instead via `pnpm test`,
+  `pnpm lint`, and `pnpm dev` hitting every other route (all 200); `/blogs*` return the
+  same pre-existing error signature regardless of the Next/React version.
+- Two of the fixes above (`RefObject<HTMLElement | null>` typing — from before this
+  sub-phase's own work, plus the `useIsRefInView` rename) live in the `ui-component`
+  submodule's working tree, a separate git repo with its own remote — not yet
+  committed/pushed there.
+
 ### 2b. Storybook
 
 - Target: `storybook@10.4.6` and matching `@storybook/*` packages (not 9.x — 10.4.6 is

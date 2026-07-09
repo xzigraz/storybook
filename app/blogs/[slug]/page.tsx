@@ -23,8 +23,8 @@ const getPost = async (slug: string) => {
 	return data.data.postBy;
 }
 
-const BlogPage = async ({ params }: { params: { slug: string } }) => {
-	const { slug } = params;
+const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+	const { slug } = await params;
 	const post: POST | null = await getPost(slug);
 
 	const formateDate = (date: string) => {
