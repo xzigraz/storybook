@@ -197,6 +197,11 @@ actually running it:
   sub-phase's own work, plus the `useIsRefInView` rename) live in the `ui-component`
   submodule — committed and pushed there (`53e13d9`), with this repo's gitlink updated
   to match.
+- **Caught late, before pushing**: `netlify.toml` (added in Phase 1) still pinned
+  `NODE_VERSION = "18.18.0"` — inconsistent with the `>=20.9.0` floor raised here.
+  With `engine-strict=true`, Netlify's build would have failed the engine check even
+  after the dashboard build commands are updated to pnpm. Bumped `NODE_VERSION` to
+  `"20.9.0"` to match.
 
 ### 2b. Storybook
 
