@@ -1,7 +1,7 @@
 'use client';
 
 import Skillset from "@/constants/skillset";
-import { ForceGraph3D } from "react-force-graph";
+import ForceGraph3D from "react-force-graph-3d";
 import SpriteText from "three-spritetext";
 
 

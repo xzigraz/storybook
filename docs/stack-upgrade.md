@@ -321,3 +321,61 @@ before writing it, rather than guessing:
 - Highest-risk sub-phase for visible regressions given the size of the version jump —
   manually verify the force-graph visualization on the front-end-development-leader
   page renders correctly after this lands, don't rely on build success alone.
+
+**What actually happened (2d is done):** this was, as expected, the hardest sub-phase,
+and build/lint/test passing was not sufficient to catch what broke — this took an
+actual headless-browser render check (Chrome via `puppeteer-core`, driven against
+`/usr/bin/google-chrome` in this sandbox) to surface.
+
+- **`react-force-graph` (the umbrella package) turned out to be the wrong dependency
+  entirely.** It bundles all four variants — 2D/3D/VR/AR — into one file, and even
+  though `components/skillset.tsx` only imports `ForceGraph3D`, the bundle pulls in
+  `aframe`, `aframe-extras`, `3d-force-graph-vr`, `3d-force-graph-ar`, and a second,
+  conflicting resolved version of `three` alongside those. Rendering the page threw
+  `pageerror: AFRAME is not defined` and the canvas never mounted (`canvas count: 0`).
+  Confirmed via `pnpm why three` — 2-3 distinct `three`/`super-three` versions in the
+  tree, purely from the VR/AR code paths we never use.
+  - Verified this wasn't a false alarm from the sandbox by checking whether *any*
+    version renders locally (reverted to the old `react-force-graph@1.44.4` +
+    `three-spritetext@1.8.2` pins temporarily — still failed, with a different error,
+    `Multiple instances of Three.js being imported` plus a crash) and by checking the
+    **actual live production site** (`thedepartedonline.com/front-end-development-leader`,
+    still running the pre-migration code) with the same headless check — it renders
+    fine there (`canvas count: 1`), confirming this needed a real fix, not just a
+    "known sandbox limitation" writeoff like the WordPress outage.
+  - Fix: switched to `react-force-graph-3d` (the dedicated 3D-only package, depends
+    only on `3d-force-graph` — no `aframe` anywhere in its tree) instead of the
+    umbrella `react-force-graph`. Its default export is `ForceGraph3D`, so
+    `components/skillset.tsx` changed from a named to a default import. This dropped
+    88 packages from the tree and `pnpm why three` now shows exactly one resolved
+    version.
+- **That surfaced a second, unrelated bug**: `Object.linkProp (...) dummyK[prop] is
+  not a function`, still no canvas. Traced (via a `jsdom`-in-Node repro of
+  `3d-force-graph`'s internal `linkKapsule` helper, which instantiates a throwaway
+  `ThreeForceGraph` at module-load time to read default prop values) to
+  `three-forcegraph@1.42.12` being resolved — it's missing two methods
+  (`linkDirectionalParticleOffset`, `linkDirectionalParticleThreeObject`) that
+  `3d-force-graph@1.80.0` expects. `3d-force-graph`'s own dependency declaration is
+  just `"three-forcegraph": "1"`, too loose to guarantee the newer methods exist.
+  Fixed via a `pnpm.overrides` entry forcing `three-forcegraph` to latest (`1.43.4`).
+- Also needed a `react-kapsule` override (→ `2.6.0`) for an earlier, similarly-shaped
+  `linkProp is not a function` failure from that package's own outdated resolution —
+  its 2.5.6 build doesn't have the issue's fix, 2.6.0 (published after) does.
+- **A methodology note for whoever revisits this**: mid-investigation, a stale-cache
+  false lead wasted real time — an old error kept reappearing after fixes that should
+  have resolved it, traced to orphaned entries in `node_modules/.pnpm` (old
+  `force-graph`/`react-kapsule` versions from before the umbrella-package swap,
+  visible via `find`/`grep` on `node_modules` but absent from the actual
+  `pnpm-lock.yaml`) surviving across `pnpm install` runs and confusing `grep`-based
+  investigation. A full `rm -rf node_modules .next && pnpm install` resolved the
+  confusion. If a fix that should work doesn't seem to, rule this out early rather
+  than late.
+- Final verification, in order: `pnpm why three` (exactly one version), `pnpm test`,
+  `pnpm lint`, `pnpm build` (compiles/type-checks; `/blogs` still the known WordPress
+  outage — temporarily moved those two page files aside to get a fully clean build
+  for this specific check, then restored them), `pnpm start` against that production
+  build with the headless-Chrome check (`canvas count: 1`, size 740×600, zero
+  `pageerror`s — only benign software-WebGL-in-a-sandbox warnings, the same ones seen
+  against the live production site), a full-page screenshot confirming the labeled
+  skill graph actually renders (nodes, colors, text sprites all visible), and
+  `pnpm build-storybook`.
