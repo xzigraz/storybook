@@ -2,7 +2,13 @@
 
 ## Status
 
-Accepted
+Implemented. Content repo: [xzigraz/cms](https://github.com/xzigraz/cms).
+
+The two existing posts couldn't be pulled from the WordPress instance directly (it was
+already unreachable by implementation time — HTTP 530 from the host, effectively
+confirming the reliability problem this ADR exists to fix). Recovered instead from
+`thedepartedonline.com`'s own stale ISR/CDN cache, which was still serving the last
+successfully rendered version of `/blogs` and each post page.
 
 ## Context
 

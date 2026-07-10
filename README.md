@@ -21,14 +21,14 @@ I have started looking for a new position, but my old site is really outdated. I
 The site relies on a few external services, configured through environment variables (see `.env.template`):
 - `GOOGLE_FORM_ID` - endpoint for a Google Form/Sheet webapp used to store contact form submissions.
 - `WORKER_AI_API_URL`, `WORKER_AI_ACCOUNT_ID`, `WORKER_AI_API_TOKEN` - Cloudflare Workers AI credentials, used by the `/api/generate` endpoint to power the Lorem Ipsum generator demo (text and image generation).
-- `WORDPRESS_GRAPHQL_URL` - GraphQL endpoint for the headless WordPress instance that serves the blog posts.
+- `CMS_RAW_BASE_URL` - base URL for the public GitHub content repo that serves the blog posts (fetched via raw.githubusercontent.com, no auth needed).
 - `SERVER_BASE_URL` - base URL used for server-side data fetching.
 - `GTM_ID` - Google Tag Manager container ID.
 
 ## Pages
 - **Home** - short introduction about myself.
 - **Experiences** - professional and personal projects, including dedicated pages for The Departed Online, ui-component, and Inxeption.com, with screenshots.
-- **Blog** - posts pulled from a headless WordPress instance via GraphQL, including write-ups like the Front-End Development Leader and Verkada pieces.
+- **Blog** - posts pulled from a public GitHub content repo ([xzigraz/cms](https://github.com/xzigraz/cms)) as markdown, including write-ups like the Front-End Development Leader and Verkada pieces.
 - **Lorem Ipsum Generator** - a small demo that calls Cloudflare Workers AI to generate placeholder text/images.
 - **Contact** - a form that posts to a Google Form, so I get an email notification for every new entry.
 
@@ -46,8 +46,4 @@ Unit tests are written with Jest and React Testing Library and live alongside th
 See `docs/FEATURES.md` for a record of what's already been built.
 
 Forward-looking:
-- Migrate the blog's content source off the free WordPress GraphQL hosting (which has
-  proven unreliable) to a dedicated public GitHub repo of markdown files, fetched via
-  raw.githubusercontent.com. See `docs/adr/0002-migrate-blog-content-source-to-github-markdown.md`
-  for the full design.
 - Increase test coverage beyond the current single smoke test (scope not yet decided).

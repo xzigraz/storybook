@@ -14,23 +14,31 @@ submissions to a Google Form/Sheet webapp (`GOOGLE_FORM_ID` env var), which give
 email notification for every new entry. Chosen specifically to avoid standing up a
 real backend/database for a single low-volume form.
 
-## Blog, backed by a headless WordPress instance over GraphQL
+## Blog, backed by a public GitHub content repo
 
-`app/blogs/page.tsx` and `app/blogs/[slug]/page.tsx` render a blog whose content comes
-from a headless WordPress instance, queried over GraphQL.
+`app/blogs/page.tsx` and `app/blogs/[slug]/page.tsx` render a blog whose content lives
+as markdown in a dedicated public repo, [xzigraz/cms](https://github.com/xzigraz/cms),
+fetched over `raw.githubusercontent.com` — no API, no auth, since the repo is public.
+See [ADR 0002](adr/0002-migrate-blog-content-source-to-github-markdown.md) for the
+full design; this replaced an earlier headless-WordPress-over-GraphQL setup whose free
+hosting had proven unreliable.
 
-- `constants/queries.ts` defines the shared `POST_PROJECTION` GraphQL fragment and
-  response types (`POST`, `POSTS`, `POST_DATA`, `POST_BY_DATA`).
+- `constants/posts.ts` defines the `POST_SUMMARY` (slug/title/date/excerpt) and `POST`
+  (`POST_SUMMARY` + `content`) types.
+- The content repo has no directory-listing endpoint available over raw fetches, so it
+  commits a hand-maintained `posts.json` manifest at its root (slug/title/date/excerpt
+  per post); each post's markdown body lives separately at `posts/{slug}.md`.
 - `app/api/get-posts/route.ts` and `app/api/get-post/route.ts` are internal API routes
-  that proxy the actual GraphQL request to `WORDPRESS_GRAPHQL_URL`; the page components
-  call these internal routes (via `SERVER_BASE_URL`) rather than the WordPress GraphQL
-  endpoint directly.
+  that fetch from `CMS_RAW_BASE_URL`; the page components call these internal routes
+  (via `SERVER_BASE_URL`) rather than GitHub directly — preserved from the WordPress
+  setup for consistency, even though there's no secret left to keep off the client.
+- `lib/markdown.ts` converts each post's markdown body to HTML via a
+  remark/rehype pipeline (`remark-parse` → `remark-gfm` → `remark-rehype` →
+  `rehype-stringify`) before it's rendered with `dangerouslySetInnerHTML`.
 - The listing page revalidates hourly (`export const revalidate = 3600`).
-
-**Being replaced** — see the Roadmap and
-[ADR 0002](adr/0002-migrate-blog-content-source-to-github-markdown.md): the free
-WordPress hosting backing this has proven unreliable, so the content source is
-migrating to a dedicated GitHub repo of markdown files.
+- The two existing posts were recovered from `thedepartedonline.com`'s stale ISR/CDN
+  cache (the WordPress origin was already unreachable by the time this migration
+  happened) and seeded into the new repo as-is.
 
 ## Lorem Ipsum generator, via Cloudflare Workers AI
 

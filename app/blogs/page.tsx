@@ -1,4 +1,4 @@
-import { POST_DATA, POST } from "@/constants/queries";
+import { POST_SUMMARY } from "@/constants/posts";
 import { MainLayout } from "@/ui-component/Layout/mainLayout";
 import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
 import "./_blog.page.scss";
@@ -22,17 +22,17 @@ const getPosts = async () => {
 		method: "POST"
 	});
 
-	const data: POST_DATA = await res.json();
+	const data: { posts: POST_SUMMARY[] } = await res.json();
 
-	if (!data || !data.data || !data.data.posts || !data.data.posts.nodes || data.data.posts.nodes.length < 1) {
+	if (!data || !data.posts || data.posts.length < 1) {
 		return [];
 	}
 
-	return data.data.posts.nodes;
+	return data.posts;
 }
 
 const BlogsPage = async () => {
-	const posts: Array<POST> = await getPosts();
+	const posts: Array<POST_SUMMARY> = await getPosts();
 
 	return <MainLayout className="blog-page peach-white">
 		<>
@@ -40,9 +40,9 @@ const BlogsPage = async () => {
 				<>
 					<h1>Blog</h1>
 					{posts.length > 0 && <div className="posts">
-						{posts.map(post => <Link href={getBlogPost(post.slug)} className="post" key={post.id}>
+						{posts.map(post => <Link href={getBlogPost(post.slug)} className="post" key={post.slug}>
 							<h2>{post.title}</h2>
-							<div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+							<p>{post.excerpt}</p>
 							<p className="read-more">Read More <span className="material-symbols-outlined">chevron_right</span></p>
 						</Link>)}
 					</div>}
