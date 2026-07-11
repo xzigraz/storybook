@@ -14,6 +14,14 @@ export const metadata: Metadata = {
 };
 
 const getPosts = async () => {
+	// Temporarily short-circuited to unblock a Netlify deploy: this page's build-time
+	// fetch calls SERVER_BASE_URL/api/get-posts, which only becomes reachable once
+	// *this* deploy is actually live - a chicken-and-egg on the first deploy of a
+	// changed API route (see the "Problem with deploying Next.js app on Netlify"
+	// post). Re-enable by restoring the block below once this deploy succeeds.
+	return [];
+
+	/*
 	if (!process.env.SERVER_BASE_URL || process.env.SERVER_BASE_URL === "") {
 		throw new Error("Server base url is not defined.");
 	}
@@ -29,6 +37,7 @@ const getPosts = async () => {
 	}
 
 	return data.posts;
+	*/
 }
 
 const BlogsPage = async () => {
