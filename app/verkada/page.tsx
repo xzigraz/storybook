@@ -210,8 +210,8 @@ const App = () => {
 					</SyntaxHighlighter>
 					<p>Which renders to something like this. I made the rookie mistake on line 16 of trying to reassign the value in the array. It is not a reference but a copy of the value. And at this point, I am already off balance and I wasn't able to correct my course.</p>
 					<div className="floor-layout">
-						{floorTiles.map((row, rowIndex) => <React.Fragment key={`${rowIndex}-${Math.random()}`}>
-							{row.map((cell, cellIndex) => <div key={`${cellIndex}-${Math.random()}`} onClick={() => handleCellClick(rowIndex, cellIndex, cell)}>{cell}</div>)}
+						{floorTiles.map((row, rowIndex) => <React.Fragment key={rowIndex}>
+							{row.map((cell, cellIndex) => <div key={`${rowIndex}-${cellIndex}`} onClick={() => handleCellClick(rowIndex, cellIndex, cell)}>{cell}</div>)}
 						</React.Fragment>)}
 					</div>
 					<p>However, in my defense, this data isn't something you will see in real world use case. First of all, we don't need to define array of an arraies to create this grid. It can be a flat list and it'll do the same thing. Like what I did below, so instead of looping twice, you just need to do it once.</p>
@@ -275,8 +275,8 @@ const App = () => {
 `}
 					</SyntaxHighlighter>
 					<div className="floor-layout">
-						{floorTiles2.map((cell, cellIndex) => 
-							<div key={`${cellIndex}-${Math.random()}`} onClick={() => handleCellClick2(cellIndex, cell)}>{cell}</div>)}
+						{floorTiles2.map((cell, cellIndex) =>
+							<div key={cellIndex} onClick={() => handleCellClick2(cellIndex, cell)}>{cell}</div>)}
 					</div>
 					<p>The final UI will look like this. I am reducing the grid size, but the idea is the same. And the next part of the ask is to add a dropdown, and based on the dropdown, it's possible to place other devices on the 0 tile. I think I did okay there, but we just didn't have enough time to finish it.</p>
 					<SyntaxHighlighter language="react" style={dracula} showLineNumbers>

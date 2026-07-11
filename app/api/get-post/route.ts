@@ -1,31 +1,23 @@
-import { POST_PROJECTION } from "@/constants/queries";
+import { fetchPost } from "@/lib/posts";
+import { markdownToHtml } from "@/lib/markdown";
+import type { POST as POST_TYPE } from "@/constants/posts";
 
 export async function POST(request: Request) {
-	if (!process.env.WORDPRESS_GRAPHQL_URL && process.env.WORDPRESS_GRAPHQL_URL !== "") {
-		throw new Error("WordPress GraphQL URL not defined.");
-	}
-
-	const slug = await request.json();
-
-	const query = `query GetPostBySlug ($slug: String!) {
-		postBy (slug: $slug) {
-			${POST_PROJECTION}
-		}
-	}`
+	const { slug } = await request.json();
 
 	try {
-		const res = await fetch(`${process.env.WORDPRESS_GRAPHQL_URL}/graphql`, {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ query, variables: slug })
-		});
+		const parsed = await fetchPost(slug);
 
-		return res;
+		if (!parsed) {
+			return Response.json({ post: null });
+		}
+
+		const content = await markdownToHtml(parsed.body);
+		const post: POST_TYPE = { ...parsed.summary, content };
+
+		return Response.json({ post });
 	} catch (error) {
 		console.error(`Error during fetch: ${error}`);
 		return Response.json({ error: 'An error occurred during the request' }, { status: 500 });
 	}
-
 }

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { MainLayout } from '@/ui-component/Layout/mainLayout';
 import { SectionLayout } from '@/ui-component/Layout/sectionLayout';
 import { Button } from "@/ui-component/Button/Button";

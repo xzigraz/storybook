@@ -1,8 +1,9 @@
 import { PATH_BLOGS } from "@/constants/paths";
-import { POST, POST_BY_DATA } from "@/constants/queries";
+import { POST } from "@/constants/posts";
 import { MainLayout } from "@/ui-component/Layout/mainLayout";
 import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
 import Link from "next/link";
+import "./_blog-post.page.scss";
 
 const getPost = async (slug: string) => {
 	if (!process.env.SERVER_BASE_URL || process.env.SERVER_BASE_URL === "") {
@@ -14,17 +15,17 @@ const getPost = async (slug: string) => {
 		body: JSON.stringify({ slug })
 	});
 
-	const data: POST_BY_DATA = await res.json();
+	const data: { post: POST | null } = await res.json();
 
-	if (!data || !data.data.postBy) {
+	if (!data || !data.post) {
 		return null;
 	}
 
-	return data.data.postBy;
+	return data.post;
 }
 
-const BlogPage = async ({ params }: { params: { slug: string } }) => {
-	const { slug } = params;
+const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+	const { slug } = await params;
 	const post: POST | null = await getPost(slug);
 
 	const formateDate = (date: string) => {
@@ -39,6 +40,7 @@ const BlogPage = async ({ params }: { params: { slug: string } }) => {
 						<Link href={PATH_BLOGS}><span className="material-symbols-outlined">chevron_left</span> Back</Link>
 					</div>
 					{post && <>
+						{post.image && <img src={post.image} alt="" className="post-header-image" />}
 						<h1>{post.title}</h1>
 						<p>{formateDate(post.date)}</p>
 						<div dangerouslySetInnerHTML={{ __html: post.content }} />

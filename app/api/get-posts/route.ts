@@ -1,31 +1,17 @@
-import { POST_PROJECTION } from "@/constants/queries";
+import { fetchPost, fetchSlugs } from "@/lib/posts";
 
 export async function POST() {
-	if (!process.env.WORDPRESS_GRAPHQL_URL && process.env.WORDPRESS_GRAPHQL_URL !== "") {
-		throw new Error("WordPress GraphQL URL not defined.");
-	}
-
-	const query = `query {
-		posts {
-			nodes {
-				${POST_PROJECTION}
-			}
-		}
-	}`
-
 	try {
-		const res = await fetch(`${process.env.WORDPRESS_GRAPHQL_URL}/graphql`, {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ query })
-		});
+		const slugs = await fetchSlugs();
 
-		return res;
+		const parsed = await Promise.all(slugs.map(slug => fetchPost(slug)));
+		const posts = parsed
+			.filter((post): post is NonNullable<typeof post> => post !== null)
+			.map(post => post.summary);
+
+		return Response.json({ posts });
 	} catch (error) {
 		console.error(`Error during fetch: ${error}`);
 		return Response.json({ error: 'An error occurred during the request' }, { status: 500 });
 	}
-
 }
