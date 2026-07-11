@@ -2,7 +2,8 @@ export type POST_SUMMARY = {
 	slug: string
 	title: string
 	date: string
-	excerpt: string
+	snippet: string
+	image?: string
 }
 
 export type POST = POST_SUMMARY & {

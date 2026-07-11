@@ -1,0 +1,11 @@
+@import "../../../ui-component/scss/utility.imports";
+
+.post-header-image {
+	width: 100%;
+	max-height: rem(400);
+	object-fit: cover;
+	border-radius: rem(10);
+	margin: {
+		bottom: rem(30);
+	}
+}

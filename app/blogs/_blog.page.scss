@@ -27,15 +27,23 @@
 			overflow: hidden;
 		}
 
-		div {
+		.post-image {
+			width: 100%;
+			height: rem(120);
+			object-fit: cover;
+			border-radius: rem(6);
+			margin: {
+				bottom: rem(10);
+			}
+		}
+
+		.snippet {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			overflow: hidden;
 			margin: {
 				bottom: rem(10px);
-			}
-			p {
-				display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 3;
-				overflow: hidden;
 			}
 		}
 

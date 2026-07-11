@@ -41,8 +41,9 @@ const BlogsPage = async () => {
 					<h1>Blog</h1>
 					{posts.length > 0 && <div className="posts">
 						{posts.map(post => <Link href={getBlogPost(post.slug)} className="post" key={post.slug}>
+							{post.image && <img src={post.image} alt="" className="post-image" />}
 							<h2>{post.title}</h2>
-							<p>{post.excerpt}</p>
+							<p className="snippet">{post.snippet}</p>
 							<p className="read-more">Read More <span className="material-symbols-outlined">chevron_right</span></p>
 						</Link>)}
 					</div>}

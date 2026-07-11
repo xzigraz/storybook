@@ -1,18 +1,13 @@
-import { POST_SUMMARY } from "@/constants/posts";
+import { fetchPost, fetchSlugs } from "@/lib/posts";
 
 export async function POST() {
-	if (!process.env.CMS_RAW_BASE_URL) {
-		throw new Error("CMS raw base URL is not defined.");
-	}
-
 	try {
-		const res = await fetch(`${process.env.CMS_RAW_BASE_URL}/posts.json`);
+		const slugs = await fetchSlugs();
 
-		if (!res.ok) {
-			return Response.json({ posts: [] });
-		}
-
-		const posts: POST_SUMMARY[] = await res.json();
+		const parsed = await Promise.all(slugs.map(slug => fetchPost(slug)));
+		const posts = parsed
+			.filter((post): post is NonNullable<typeof post> => post !== null)
+			.map(post => post.summary);
 
 		return Response.json({ posts });
 	} catch (error) {

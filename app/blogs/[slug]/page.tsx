@@ -3,6 +3,7 @@ import { POST } from "@/constants/posts";
 import { MainLayout } from "@/ui-component/Layout/mainLayout";
 import { SectionLayout } from "@/ui-component/Layout/sectionLayout";
 import Link from "next/link";
+import "./_blog-post.page.scss";
 
 const getPost = async (slug: string) => {
 	if (!process.env.SERVER_BASE_URL || process.env.SERVER_BASE_URL === "") {
@@ -39,6 +40,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 						<Link href={PATH_BLOGS}><span className="material-symbols-outlined">chevron_left</span> Back</Link>
 					</div>
 					{post && <>
+						{post.image && <img src={post.image} alt="" className="post-header-image" />}
 						<h1>{post.title}</h1>
 						<p>{formateDate(post.date)}</p>
 						<div dangerouslySetInnerHTML={{ __html: post.content }} />
