@@ -201,7 +201,13 @@ actually running it:
   `NODE_VERSION = "18.18.0"` — inconsistent with the `>=20.9.0` floor raised here.
   With `engine-strict=true`, Netlify's build would have failed the engine check even
   after the dashboard build commands are updated to pnpm. Bumped `NODE_VERSION` to
-  `"20.9.0"` to match.
+  `"20.9.0"` to match. **This still wasn't enough** — see
+  [ADR 0001](adr/0001-raise-node-engine-floor-for-next-16.md)'s Status section:
+  `>=20.9.0` only satisfied Next's own floor, not `eslint@10.6.0` or `vite@7.3.6`
+  (landed later, in 2b/2c), both of which need `^20.19.0` or newer. This surfaced for
+  real on Netlify — `pnpm install` failed there with `ERR_PNPM_UNSUPPORTED_ENGINE` —
+  after the PR had already merged. Fixed post-merge by raising both `engines.node`
+  and `netlify.toml`'s `NODE_VERSION` to `20.19.0`/`20.20.2`.
 
 ### 2b. Storybook
 

@@ -1,8 +1,19 @@
-# 1. Raise the Node engine floor to >=20.9.0 for Next 16
+# 1. Raise the Node engine floor to >=20.19.0 for Next 16
 
 ## Status
 
-Accepted
+Accepted. **Revised post-merge**: the floor stated here was `>=20.9.0` (matching only
+Next 16's own declared minimum) and shipped that way in `netlify.toml`
+(`NODE_VERSION = "20.9.0"`). That broke the actual Netlify build:
+`pnpm install` failed with `ERR_PNPM_UNSUPPORTED_ENGINE` on Node 20.9.0, because
+`eslint@10.6.0` and `vite@7.3.6` (both landed in this same Phase 2, in 2c and 2b
+respectively) declare their own, stricter floors — `^20.19.0 || ^22.13.0 || >=24` and
+`^20.19.0 || >=22.12.0`. `>=20.9.0` was never actually installable once the full
+Phase 2 dependency set was considered; `engines.node` only ever got checked against
+Next's requirement in isolation, not the whole tree. Raised to `>=20.19.0` (satisfies
+every floor found: Next, ESLint, typescript-eslint, Vite), and `netlify.toml` to
+`NODE_VERSION = "20.20.2"` (latest 20.x LTS) to match. Reproduced the original
+Netlify failure locally under Node 20.20.2 before and after to confirm.
 
 ## Context
 
@@ -31,10 +42,11 @@ stuck on Node 18) forcing the cap.
 
 ## Consequences
 
-- Local dev environments, CI, and Netlify's build image must run Node >=20.9.0. Verify
-  Netlify's configured Node version (via `netlify.toml` or dashboard/`NODE_VERSION`
-  env var) is bumped alongside this change, or the production build will fail on the
-  engine check.
+- Local dev environments, CI, and Netlify's build image must run Node >=20.19.0
+  (revised from the originally-stated >=20.9.0 — see Status above). Verify Netlify's
+  configured Node version (via `netlify.toml` or dashboard/`NODE_VERSION` env var) is
+  bumped alongside this change, or the production build will fail on the engine
+  check — this exact thing happened once already with the wrong floor.
 - Any contributor still on Node 18.x locally will fail `engine-strict` installs
   (`.npmrc` has `engine-strict=true`) until they upgrade Node — intentional, not an
   oversight, since `engine-strict` is what surfaces this kind of mismatch early rather
