@@ -11,6 +11,7 @@ export default tseslint.config(
 			"node_modules",
 			".next",
 			"storybook-static",
+			"coverage",
 			"ui-component",
 			"public",
 		],

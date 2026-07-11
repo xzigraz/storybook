@@ -4,3 +4,4 @@ storybook-static
 .cache
 .next
 .env
+coverage
